@@ -5,7 +5,8 @@ SRC = $(addprefix src/, $SOURCE_FILES)
 
 ###################################  LIBS     ##################################
 
-LIBS = -Llibft/ -lft
+LIBFT_DIR = libft/
+LIBS = -L$(LIBFT_DIR) -lft
 
 ################################################################################
 
@@ -26,6 +27,7 @@ INCLD = include/
 #############################  MANDATORY COMMANDS  #############################
 
 $(NAME): $(OBJ)
+	make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
@@ -35,9 +37,11 @@ debug: $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
 re:	fclean	all
 
@@ -50,3 +54,5 @@ norm:
 	norminette **/*.h
 
 ################################################################################
+
+.PHONY: all debug clean fclean re norm
