@@ -21,7 +21,7 @@ typedef struct		s_list
 }					t_list;
 
 void				free_string_arr(void *arr);
-char				**ft_split(char const *s, char c);
+char				**ft_split(char const *s, int (*delim_comparator)(int));
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
