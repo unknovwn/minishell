@@ -1,12 +1,11 @@
 NAME = minishell
-SRCDIR = src/
 
-SRC =	$(SRCDIR)main.c
+SOURCE_FILES = minishell.c
+SRC = $(addprefix src/, $SOURCE_FILES)
 
 ###################################  LIBS     ##################################
 
-#LIBFTDIR =	$(SRCDIR)libft/
-#LIBFT =		$(LIBFTDIR)libft.a
+LIBS = -Llibft/ -lft
 
 ################################################################################
 
@@ -17,7 +16,7 @@ OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SEGINFOFLAG = -fsanitize=address
-INCLD = includes/
+INCLD = include/
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
@@ -26,10 +25,13 @@ INCLD = includes/
 
 #############################  MANDATORY COMMANDS  #############################
 
-$(NAME):	$(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
 
-all:		$(NAME)
+all: $(NAME)
+
+debug: $(OBJ)
+	$(CC) $(CFLAGS) $(SEGINFOFLAG) $(LIBS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
