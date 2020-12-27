@@ -12,12 +12,12 @@
 
 #include "libft.h"
 
-static size_t		ft_lentodelim(char const *s, char c)
+static size_t		ft_lentodelim(char const *s, int (*delim_comparator)(int))
 {
 	size_t	len;
 
 	len = 0;
-	while (*s && *s != c)
+	while (*s && !(delim_comparator(*s)))
 	{
 		s++;
 		len++;
@@ -25,17 +25,17 @@ static size_t		ft_lentodelim(char const *s, char c)
 	return (len);
 }
 
-static unsigned int	count_substr(char const *s, char c)
+static unsigned int	count_substr(char const *s, int (*delim_comparator)(int))
 {
 	unsigned int	counter;
 
 	counter = 0;
 	while (*s)
 	{
-		if (*s != c)
+		if (!(delim_comparator(*s)))
 		{
 			counter++;
-			while (*s && *s != c)
+			while (*s && !(delim_comparator(*s)))
 				s++;
 			s--;
 		}
@@ -59,7 +59,7 @@ static char			*ft_substrcpy(char const *s, size_t len)
 	return (result_start);
 }
 
-char				**ft_split(char const *s, char c)
+char				**ft_split(char const *s, int (*delim_comparator)(int))
 {
 	unsigned int	substr_count;
 	char			**result;
@@ -68,16 +68,16 @@ char				**ft_split(char const *s, char c)
 
 	if (!s)
 		return (0);
-	substr_count = count_substr(s, c);
+	substr_count = count_substr(s, delim_comparator);
 	if (!(result = (char**)malloc(sizeof(char*) * (substr_count + 1))))
 		return (0);
 	result[substr_count] = 0;
 	i = 0;
 	while (substr_count--)
 	{
-		while (*s == c)
+		while (delim_comparator(*s))
 			s++;
-		substr_len = ft_lentodelim(s, c);
+		substr_len = ft_lentodelim(s, delim_comparator);
 		if (!(result[i++] = ft_substrcpy(s, substr_len)))
 		{
 			free_string_arr(result);
