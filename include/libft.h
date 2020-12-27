@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2020/12/27 19:29:46 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2020/12/27 19:45:48 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-void				free_string_arr(char **arr);
+void				free_string_arr(void *arr);
 char				**ft_split(char const *s, char c);
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);

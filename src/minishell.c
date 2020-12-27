@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2020/12/27 16:28:55 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2020/12/27 19:44:00 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 		command_table = read_command();
 		command_result = execute(command_table);
 		print(command_result);
-		ft_lstclear(command_table, free_string_arr);
+		ft_lstclear(&command_table, free_string_arr);
 		free(command_result);
 	}
 	return (0);
