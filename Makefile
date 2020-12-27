@@ -1,7 +1,7 @@
 NAME = minishell
 
 SOURCE_FILES = minishell.c
-SRC = $(addprefix src/, $SOURCE_FILES)
+SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################
 
