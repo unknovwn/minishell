@@ -16,6 +16,12 @@
 # include "libft.h"
 # include <stdlib.h>
 
+typedef struct	s_command {
+	char	**argv;
+	int		fd_in;
+	int		fd_out;
+}				t_command;
+
 t_list	*read_command(void);
 char	*execute(t_list *command_table);
 void	print(char *command_result);

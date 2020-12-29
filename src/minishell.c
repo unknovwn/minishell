@@ -14,8 +14,8 @@
 
 int	main(void)
 {
-	t_list	*command_table;
-	char	*command_result;
+	t_command	*command_table;
+	char		*command_result;
 
 	while (1)
 	{
