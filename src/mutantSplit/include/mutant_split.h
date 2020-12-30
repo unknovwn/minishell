@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPLIT_COMMANDS_H
-# define SPLIT_COMMANDS_H
+#ifndef MUTANT_SPLIT_H
+# define MUTANT_SPLIT_H
 
 # include <stdint.h>
 # include <stdlib.h>
 
-char		**split_commands(const char *s, char c);
+char		**mutant_split(const char *s, char c);
 
-size_t		count_commands(const char *s, char c);
+size_t		count_elements(const char *s, char c);
 
-int			is_protect(char c);
+int		is_protect(char c);
 char		*skip_protected(const char *s);
 
 #endif

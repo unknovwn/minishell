@@ -1,9 +1,9 @@
-NAME = split_commands
+NAME = mutant_split
 
 SOURCE_FILES =	main.c \
 				mutant_split.c \
 				utils.c \
-				count_result_len.c
+				count_elements.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################
@@ -23,7 +23,7 @@ SEGINFOFLAG = -fsanitize=address
 INCLD = include/
 
 .c.o:
-	$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 ################################################################################
 
@@ -31,7 +31,7 @@ INCLD = include/
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
+	$(CC) $(LIBS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
@@ -40,11 +40,11 @@ debug: $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
-	make clean -C $(LIBFT_DIR)
+	#make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
-	make fclean -C $(LIBFT_DIR)
+	#make fclean -C $(LIBFT_DIR)
 
 re:	fclean	all
 

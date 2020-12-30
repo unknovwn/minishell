@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #include <stdbool.h>
-#include "split_commands.h"
+#include "mutant_split.h"
 
 char		*skip_symbols(const char *s, char c)
 {
@@ -47,31 +47,35 @@ char		*skip_protected(const char *s)
 	return ((char*)s);
 }
 
-static int	next_is_new_command(const char *s, char c, uint8_t word_flag)
+size_t		count_elements(const char *s, char c)
 {
-	return (*s == c && *(s + 1) != '\0' && word_flag == true);
-}
-
-size_t		count_commands(const char *s, char c)
-{
+	char	*after_protecting;
 	size_t	len;
-	uint8_t	word_flag;
+	uint8_t	new_word_flag;
 
 	if (s == NULL)
-			return (0);
-	len = 1;
-	word_flag = 1;
+		return (0);
+	len = 0;
+	new_word_flag = 1;
 	while (*s != '\0')
 	{
-		s = (const char*)skip_protected(s);
-		if (*s != c)
-			word_flag = true;
-		if (next_is_new_command(s, c, word_flag) == true)
+		after_protecting = skip_protected(s);
+		if (s != after_protecting && new_word_flag == true)
 		{
-			word_flag = false;
-			len += 1;
+			new_word_flag = false;
+			len++;
 		}
-		s++;
+		s = after_protecting;
+		if (*s != c && new_word_flag == true)
+		{
+			new_word_flag = false;
+			len++;
+		}
+		if (*s == c)
+			new_word_flag = true;
+		if (*s == '\0')
+			break ;
+		s += 1;
 	}
 	return (len);
 }

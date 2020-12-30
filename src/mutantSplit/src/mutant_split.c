@@ -14,17 +14,17 @@
 #include <unistd.h>
 
 #include <stdbool.h>
-#include "split_commands.h"
+#include "mutant_split.h"
 #include "libft.h"
 
-char	**split_commands(const char *s, char c)
+char	**mutant_split(const char *s, char c)
 {
 	char	**result;
 	size_t	len;
 	size_t	i;
 
-	len = count_commands(s, c);
-	printf("len = |%zu|\n", len);
+	len = count_elements(s, c);
+	printf("------MyLen = %zu\n", len);
 
 	result = (char**)malloc(sizeof(char*) * (len + 1));
 	if (result == NULL)
