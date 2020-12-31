@@ -1,0 +1,123 @@
+~~~ basic ~~~
+input: |123|
+correct len = 1
+------MyLen = 1
+
+input: |123;456|
+correct len = 2
+------MyLen = 2
+
+input: |123;456;789|
+correct len = 3
+------MyLen = 3
+
+input: |123;456;|
+correct len = 2
+------MyLen = 2
+
+input: |;123;456;789|
+correct len = 3
+------MyLen = 3
+
+input: |;123;456;|
+correct len = 2
+------MyLen = 2
+
+input: |;123;456;789;|
+correct len = 3
+------MyLen = 3
+
+~~~~~~~~~~~~~
+
+~~~ hard ~~~~
+input: |;;;;;123;;;;|
+correct len = 1
+------MyLen = 1
+
+input: |123;;;;;;456|
+correct len = 2
+------MyLen = 2
+
+input: |123;;;;;456;;;;;789|
+correct len = 3
+------MyLen = 3
+
+input: |123;;;;;456;;;;|
+correct len = 2
+------MyLen = 2
+
+input: |;;;;123;;;;456;;;;789|
+correct len = 3
+------MyLen = 3
+
+input: |;;;;123;;;;;456;;;|
+correct len = 2
+------MyLen = 2
+
+input: |;;;;123;;;;456;789;;;;|
+correct len = 3
+------MyLen = 3
+
+~~~~~~~~~~~~~
+
+~~~ Basic With Protecting ~~~
+input: |123\;456|
+correct len = 1
+------MyLen = 1
+
+input: |12'3;4'56|
+correct len = 1
+------MyLen = 1
+
+input: |"123;456";789|
+correct len = 2
+------MyLen = 2
+
+input: |123\\;456;|
+correct len = 2
+------MyLen = 2
+
+input: |;123"";456'';789|
+correct len = 3
+------MyLen = 3
+
+input: |";123;456;"|
+correct len = 1
+------MyLen = 1
+
+input: |;123;45\"6;789;|
+correct len = 3
+------MyLen = 3
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~ Hard With Protecting ~~~~
+input: |'123\;\;456'\;';'789|
+correct len = 1
+------MyLen = 1
+
+input: |"123;;";456\;\;'789;'321|
+correct len = 2
+------MyLen = 2
+
+input: |123\';';;;;'456\;";;;";78\;9|
+correct len = 3
+------MyLen = 3
+
+input: |\"123;"456"\;;|
+correct len = 2
+------MyLen = 2
+
+input: |\"123;\'456;789\;321';'654|
+correct len = 3
+------MyLen = 3
+
+input: |\;123\;';;;;'\;;456'';"";";"789|
+correct len = 4
+------MyLen = 4
+
+input: |\'123;'456;';768\;1|
+correct len = 3
+------MyLen = 3
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

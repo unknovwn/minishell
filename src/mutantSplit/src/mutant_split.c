@@ -17,13 +17,24 @@
 #include "mutant_split.h"
 #include "libft.h"
 
-char	**mutant_split(const char *s, char c)
+static void		init_str(t_split_str *str, char *s, char c)
+{
+	str->current = s;
+	str->after_protecting = skip_protected(str->current);
+	str->separator = c;
+	str->new_word_flag = 1;
+
+}
+
+char			**mutant_split(const char *s, char c)
 {
 	char	**result;
 	size_t	len;
 	size_t	i;
+	t_split_str	str;
 
-	len = count_elements(s, c);
+	init_str(&str, (char*)s, c);
+	len = count_elements(str);
 	printf("------MyLen = %zu\n", len);
 
 	result = (char**)malloc(sizeof(char*) * (len + 1));

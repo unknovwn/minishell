@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 
 #include <stdbool.h>
 #include "mutant_split.h"
 
-char		*skip_symbols(const char *s, char c)
+static char	*skip_symbols(const char *s, char c)
 {
 	while (*s != '\0' && *s != c)
 		s++;
@@ -25,7 +26,7 @@ char		*skip_symbols(const char *s, char c)
 		return ((char*)(s + 1));
 }
 
-int			is_protect(char c)
+static int	is_protect(char c)
 {
 	return (c == '\'' || c == '\"' || c == '\\');
 }
@@ -47,36 +48,56 @@ char		*skip_protected(const char *s)
 	return ((char*)s);
 }
 
-size_t		count_elements(const char *s, char c)
+static void	skip_word(t_split_str *s)
 {
-	char	*after_protecting;
-	size_t	len;
-	uint8_t	new_word_flag;
+	if (is_protect(*(s->current)))
+		s->current = skip_protected(s->current);
+	else
+		s->current += 1;
+}
 
-	if (s == NULL)
-		return (0);
-	len = 0;
-	new_word_flag = 1;
-	while (*s != '\0')
-	{
-		after_protecting = skip_protected(s);
-		if (s != after_protecting && new_word_flag == true)
-		{
-			new_word_flag = false;
-			len++;
-		}
-		s = after_protecting;
-		if (*s != c && new_word_flag == true)
-		{
-			new_word_flag = false;
-			len++;
-		}
-		if (*s == c)
-			new_word_flag = true;
-		if (*s == '\0')
-			break ;
-		s += 1;
-	}
-	return (len);
+static int	is_end_or_sep(t_split_str *s)
+{
+	return (*s->current != '\0' &&
+			*s->current != s->separator);
+}
+
+static void	count_and_skip_word(size_t *word_count, t_split_str *s)
+{
+	*word_count += 1;
+	s->new_word_flag = 0;
+	s->current = s->after_protecting;
+	while (is_end_or_sep(s))
+		skip_word(s);
+	s->after_protecting = skip_protected(s->current);
+}
+
+static int	is_new_word(t_split_str *s)
+{
+	return (*s->current != s->separator &&
+			s->new_word_flag == true);
+}
+
+static void	count(size_t *word_count, t_split_str *s)
+{
+	if (is_new_word(s) == true)
+		count_and_skip_word(word_count, s);
+	if (*(s->current) == s->separator)
+		s->new_word_flag = true;
+	if (is_protect(*s->current))
+		s->current = skip_protected(s->current);
+	else if (*(s->current) != '\0')
+		s->current += 1;
+	s->after_protecting = skip_protected(s->current);
+}
+
+size_t		count_elements(t_split_str s)
+{
+	size_t		word_count;
+
+	word_count = 0;
+	while (*(s.current) != '\0')
+		count(&word_count, &s);
+	return (word_count);
 }
 

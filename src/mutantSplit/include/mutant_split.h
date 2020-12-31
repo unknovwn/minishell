@@ -18,9 +18,16 @@
 
 char		**mutant_split(const char *s, char c);
 
-size_t		count_elements(const char *s, char c);
+typedef struct		s_split_str
+{
+	char	*current;
+	char	*after_protecting;
+	char	separator;
+	uint8_t	new_word_flag;
+}					t_split_str;
 
-int		is_protect(char c);
+size_t		count_elements(t_split_str str);
+
 char		*skip_protected(const char *s);
 
 #endif
