@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <fcntl.h>
 #include "mutant_split.h"
 
 int	main(void)
@@ -18,6 +19,8 @@ int	main(void)
 	/*
 	** Tests
 	*/
+
+	int		fd = open("user_output.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IREAD | S_IWRITE);
 
 	char	**res;
 	char	c;
@@ -184,7 +187,6 @@ int	main(void)
 	res = mutant_split(s9, c);
 	printf("\n");
 
-	
 	printf("input: |%s|\n", s10);
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s10, c);
@@ -209,7 +211,6 @@ int	main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s14, c);
 	printf("\n");
-
 
 
 	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
