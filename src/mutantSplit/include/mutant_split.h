@@ -16,7 +16,17 @@
 # include <stdint.h>
 # include <stdlib.h>
 
+typedef struct		s_arr_strings
+{
+	char			**arr;
+	size_t			len;
+}					t_arr_strings;
+
 char		**mutant_split(const char *s, char c);
+
+/*
+** Counting words.
+*/
 
 typedef struct		s_split_str
 {

@@ -56,7 +56,7 @@ static void	skip_word(t_split_str *s)
 		s->current += 1;
 }
 
-static int	is_end_or_sep(t_split_str *s)
+int			is_end_or_sep(t_split_str *s)
 {
 	return (*s->current != '\0' &&
 			*s->current != s->separator);
@@ -72,7 +72,7 @@ static void	count_and_skip_word(size_t *word_count, t_split_str *s)
 	s->after_protecting = skip_protected(s->current);
 }
 
-static int	is_new_word(t_split_str *s)
+int			is_new_word(t_split_str *s)
 {
 	return (*s->current != s->separator &&
 			s->new_word_flag == true);
