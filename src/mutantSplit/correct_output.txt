@@ -2,30 +2,53 @@
 input: |123|
 correct len = 1
 ------MyLen = 1
+word    len = 3
+WORDS   len = 3
 
-input: |123;456|
+input: |123;4567|
 correct len = 2
 ------MyLen = 2
+word    len = 3
+word    len = 4
+WORDS   len = 3, 4
 
-input: |123;456;789|
+input: |123;4567;789123|
 correct len = 3
 ------MyLen = 3
+word    len = 3
+word    len = 4
+word    len = 6
+WORDS   len = 3, 4, 6
 
-input: |123;456;|
+input: |12;4567;|
 correct len = 2
 ------MyLen = 2
+word    len = 2
+word    len = 4
+WORDS   len = 2, 4
 
-input: |;123;456;789|
+input: |;1;456;789123456|
 correct len = 3
 ------MyLen = 3
+word    len = 1
+word    len = 3
+word    len = 9
+WORDS   len = 1, 3, 9
 
-input: |;123;456;|
+input: |;1234567;4;|
 correct len = 2
 ------MyLen = 2
+word    len = 7
+word    len = 1
+WORDS   len = 7, 1
 
-input: |;123;456;789;|
+input: |;1234567;456789;7891;|
 correct len = 3
 ------MyLen = 3
+word    len = 7
+word    len = 6
+word    len = 4
+WORDS   len = 7, 6, 4
 
 ~~~~~~~~~~~~~
 
@@ -33,61 +56,104 @@ correct len = 3
 input: |;;;;;123;;;;|
 correct len = 1
 ------MyLen = 1
+word    len = 3
+WORDS   len = 3
 
-input: |123;;;;;;456|
+input: |12;;;;;;456|
 correct len = 2
 ------MyLen = 2
+word    len = 2
+word    len = 3
+WORDS   len = 2, 3
 
-input: |123;;;;;456;;;;;789|
+input: |1;;;;;46;;;;;789|
 correct len = 3
 ------MyLen = 3
+word    len = 1
+word    len = 2
+word    len = 3
+WORDS   len = 1, 2, 3
 
-input: |123;;;;;456;;;;|
+input: |123;;;;;456789;;;;|
 correct len = 2
 ------MyLen = 2
+word    len = 3
+word    len = 6
+WORDS   len = 3, 6
 
-input: |;;;;123;;;;456;;;;789|
+input: |;;;;12345;;;;45;;;;7|
 correct len = 3
 ------MyLen = 3
+word    len = 5
+word    len = 2
+word    len = 1
+WORDS   len = 5, 2,  1
 
-input: |;;;;123;;;;;456;;;|
+input: |;;;;12345;;;;;456789;;;|
 correct len = 2
 ------MyLen = 2
+word    len = 5
+word    len = 6
+WORDS   len = 5, 6
 
-input: |;;;;123;;;;456;789;;;;|
+input: |;;;;1234;;;;456789;7891234567;;;;|
 correct len = 3
 ------MyLen = 3
+word    len = 4
+word    len = 6
+word    len = 10
+WORDS   len = 4, 6, 10
 
 ~~~~~~~~~~~~~
 
 ~~~ Basic With Protecting ~~~
-input: |123\;456|
+input: |1\;46|
 correct len = 1
 ------MyLen = 1
+word    len = 4
+WORDS   len = 4
 
 input: |12'3;4'56|
 correct len = 1
 ------MyLen = 1
+word    len = 7
+WORDS   len = 7
 
 input: |"123;456";789|
 correct len = 2
 ------MyLen = 2
+word    len = 7
+word    len = 3
+WORDS   len = 7, 3
 
 input: |123\\;456;|
 correct len = 2
 ------MyLen = 2
+word    len = 4
+word    len = 3
+WORDS   len = 4, 3
 
 input: |;123"";456'';789|
 correct len = 3
 ------MyLen = 3
+word    len = 3
+word    len = 3
+word    len = 3
+WORDS   len = 3, 3, 3
 
 input: |";123;456;"|
 correct len = 1
 ------MyLen = 1
+word    len = 9
+WORDS   len = 9,
 
 input: |;123;45\"6;789;|
 correct len = 3
 ------MyLen = 3
+word    len = 3
+word    len = 4
+word    len = 3
+WORDS   len = 3, 4, 3
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -95,29 +161,54 @@ correct len = 3
 input: |'123\;\;456'\;';'789|
 correct len = 1
 ------MyLen = 1
+word    len = 15
+WORDS   len = 15
 
 input: |"123;;";456\;\;'789;'321|
 correct len = 2
 ------MyLen = 2
+word    len = 5
+word    len = 12
+WORDS   len = 5, 12
 
 input: |123\';';;;;'456\;";;;";78\;9|
 correct len = 3
 ------MyLen = 3
+word    len = 4
+word    len = 11
+word    len = 4
+WORDS   len = 4, 11, 4
 
 input: |\"123;"456"\;;|
 correct len = 2
 ------MyLen = 2
+word    len = 4
+word    len = 4
+WORDS   len = 4, 4
 
 input: |\"123;\'456;789\;321';'654|
 correct len = 3
 ------MyLen = 3
+word    len = 4
+word    len = 4
+word    len = 11
+WORDS   len = 4, 4, 11
 
 input: |\;123\;';;;;'\;;456'';"";";"789|
 correct len = 4
 ------MyLen = 4
+word    len = 10
+word    len = 3
+word    len = 0
+word    len = 4
+WORDS   len = 10, 3, 0, 4
 
 input: |\'123;'456;';768\;1|
 correct len = 3
 ------MyLen = 3
+word    len = 4
+word    len = 4
+word    len = 5
+WORDS   len = 4, 4, 5
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
