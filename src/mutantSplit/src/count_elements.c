@@ -26,7 +26,7 @@ static char	*skip_symbols(const char *s, char c)
 		return ((char*)(s + 1));
 }
 
-static int	is_protect(char c)
+int			is_protect(char c)
 {
 	return (c == '\'' || c == '\"' || c == '\\');
 }
@@ -43,8 +43,10 @@ char		*skip_protected(const char *s)
 		s += 2;
 	else if (*s == '\\' && *(s + 1) == '\0')
 		s += 1;
+	/*
 	if (is_protect(*s) == true)
 		s = (const char*)skip_protected(s);
+	*/
 	return ((char*)s);
 }
 
@@ -58,8 +60,8 @@ static void	skip_word(t_split_str *s)
 
 int			is_end_or_sep(t_split_str *s)
 {
-	return (*s->current != '\0' &&
-			*s->current != s->separator);
+	return (*s->current == '\0' ||
+			*s->current == s->separator);
 }
 
 static void	count_and_skip_word(size_t *word_count, t_split_str *s)
@@ -67,7 +69,7 @@ static void	count_and_skip_word(size_t *word_count, t_split_str *s)
 	*word_count += 1;
 	s->new_word_flag = 0;
 	s->current = s->after_protecting;
-	while (is_end_or_sep(s))
+	while (is_end_or_sep(s) == false)
 		skip_word(s);
 	s->after_protecting = skip_protected(s->current);
 }

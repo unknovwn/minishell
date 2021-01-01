@@ -119,6 +119,7 @@ int			main(void)
 	printf("correct len = %d\n", 1);
 	res = mutant_split(s8, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d\n", 3);
 	free(res);
 	printf("\n");
 
@@ -126,6 +127,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s9, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 2, 3);
 	free(res);
 	printf("\n");
 
@@ -133,6 +135,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s10, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 1, 2, 3);
 	free(res);
 	printf("\n");
 
@@ -140,6 +143,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s11, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 3, 6);
 	free(res);
 	printf("\n");
 
@@ -147,6 +151,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s12, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d,  %d\n", 5, 2, 1);
 	free(res);
 	printf("\n");
 
@@ -154,6 +159,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s13, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 5, 6);
 	free(res);
 	printf("\n");
 
@@ -161,6 +167,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s14, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 4, 6, 10);
 	free(res);
 	printf("\n");
 
@@ -181,12 +188,14 @@ int			main(void)
 	res = mutant_split(s1, c);
 	//print_arr_len(res);
 	free(res);
+	printf("WORDS   len = %d\n", 4);
 	printf("\n");
 
 	printf("input: |%s|\n", s2);
 	printf("correct len = %d\n", 1);
 	res = mutant_split(s2, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d\n", 7);
 	free(res);
 	printf("\n");
 
@@ -194,6 +203,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s3, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 7, 3);
 	free(res);
 	printf("\n");
 
@@ -201,6 +211,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s4, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 4, 3);
 	free(res);
 	printf("\n");
 
@@ -208,6 +219,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s5, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 3, 3, 3);
 	free(res);
 	printf("\n");
 
@@ -215,6 +227,7 @@ int			main(void)
 	printf("correct len = %d\n", 1);
 	res = mutant_split(s6, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d,\n", 9);
 	free(res);
 	printf("\n");
 
@@ -222,6 +235,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s7, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 3, 4, 3);
 	free(res);
 	printf("\n");
 
@@ -241,6 +255,7 @@ int			main(void)
 	printf("correct len = %d\n", 1);
 	res = mutant_split(s8, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d\n", 15);
 	free(res);
 	printf("\n");
 
@@ -248,6 +263,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s9, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 5, 12);
 	free(res);
 	printf("\n");
 
@@ -255,6 +271,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s10, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 4, 11, 4);
 	free(res);
 	printf("\n");
 
@@ -262,6 +279,7 @@ int			main(void)
 	printf("correct len = %d\n", 2);
 	res = mutant_split(s11, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d\n", 4, 4);
 	free(res);
 	printf("\n");
 
@@ -269,6 +287,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s12, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 4, 4, 11);
 	free(res);
 	printf("\n");
 
@@ -276,6 +295,7 @@ int			main(void)
 	printf("correct len = %d\n", 4);
 	res = mutant_split(s13, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d, %d\n", 10, 3, 0, 4);
 	free(res);
 	printf("\n");
 
@@ -283,6 +303,7 @@ int			main(void)
 	printf("correct len = %d\n", 3);
 	res = mutant_split(s14, c);
 	//print_arr_len(res);
+	printf("WORDS   len = %d, %d, %d\n", 4, 4, 5);
 	free(res);
 	printf("\n");
 
