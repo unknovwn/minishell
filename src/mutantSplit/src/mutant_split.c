@@ -79,6 +79,25 @@ size_t			count_string_len(t_split_str s)
 **                            Copying strings.
 ** ==========================================================================
 */
+/*
+static void		skip_string(t_split_str *s)
+{
+	while (is_end_or_sep(s) == false)
+	{
+		if (s->current != s->after_protecting)
+		{
+			s->current = s->after_protecting;
+		}
+		else if (is_end_or_sep(s) == false)
+		{
+			s->current += 1;
+		}
+		s->after_protecting = skip_protected(s->current);
+	}
+	if (*s->current != '\0')
+		s->current += 1;
+	s->after_protecting = skip_protected(s->current);
+}
 
 char			*copy_and_skip_symbol(char *dst, t_split_str *s)
 {
@@ -101,33 +120,17 @@ char			*copy_and_skip_protected(char *dst, t_split_str *s)
 			s->current += 1;
 		}
 	}
-	else if (*s->current == '\'')
+	else
 	{
 		s->current += 1;
-		if (*s->current != '\0')
+		while (s->current != s->after_protecting - 1)
 		{
-			while (*s->current != '\'')
-			{
-				*dst = *s->current;
-				dst += 1;
-				s->current += 1;
-			}
+			*dst = *s->current;
+			dst += 1;
 			s->current += 1;
 		}
-	}
-	else if (*s->current == '\"')
-	{
-		s->current += 1;
-		if (*s->current != '\0')
-		{
-			while (*s->current != '\"')
-			{
-				*dst = *s->current;
-				dst += 1;
-				s->current += 1;
-			}
+		if (is_end_or_sep(s) == false)
 			s->current += 1;
-		}
 	}
 	s->after_protecting = skip_protected(s->current);
 	return (dst);
@@ -153,25 +156,6 @@ static void		copy_string(char *dst, t_split_str s)
 	printf("~~~~~~~~~~~~~~~~\n");
 }
 
-static void		skip_string(t_split_str *s)
-{
-	while (is_end_or_sep(s) == false)
-	{
-		if (s->current != s->after_protecting)
-		{
-			s->current = s->after_protecting;
-		}
-		else if (is_end_or_sep(s) == false)
-		{
-			s->current += 1;
-		}
-		s->after_protecting = skip_protected(s->current);
-	}
-	if (*s->current != '\0')
-		s->current += 1;
-	s->after_protecting = skip_protected(s->current);
-}
-
 char			*copy_and_skip_string(t_split_str *s)
 {
 	char	*string;
@@ -181,7 +165,7 @@ char			*copy_and_skip_string(t_split_str *s)
 	string = (char*)malloc(sizeof(char) * (string_len + 1));
 	if (string == NULL)
 		return (NULL);
-
+	string[string_len] = '\0';
 	copy_string(string, *s);
 
 
@@ -216,12 +200,12 @@ static size_t	copy_strings(t_arr_strings *strings, t_split_str s)
 	}
 	return (i);
 }
+*/
 
 /*
 ** ==========================================================================
 ** ==========================================================================
 */
-
 static void		init_str(t_split_str *str, char *s, char c)
 {
 	str->current = s;

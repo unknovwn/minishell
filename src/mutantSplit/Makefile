@@ -2,9 +2,25 @@ NAME = mutant_split
 
 SOURCE_FILES =	main.c \
 				mutant_split.c \
-				utils.c \
-				count_elements.c
+				$(COUNTING_STRINGS) \
+				$(COPYING_STRINGS)
 SRC = $(addprefix src/, $(SOURCE_FILES))
+
+#############################  COPYING STRINGS #################################
+
+COUNTING_STRINGS_FILES =	count_strings.c \
+						count_strings_utils.c
+COUNTING_STRINGS = $(addprefix counting_strings/, $(COUNTING_STRINGS_FILES))
+
+################################################################################
+
+#############################  COPYING STRINGS #################################
+
+COPYING_STRINGS_FILES =	copy_strings.c \
+						copy_strings_utils.c
+COPYING_STRINGS = $(addprefix copying_strings/, $(COPYING_STRINGS_FILES))
+
+################################################################################
 
 ###################################  LIBS     ##################################
 
@@ -23,15 +39,15 @@ SEGINFOFLAG = -fsanitize=address
 INCLD = include/
 
 .c.o:
-	$(CC) $(SEGINFOFLAG) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 ################################################################################
 
 #############################  MANDATORY COMMANDS  #############################
 
 $(NAME): $(OBJ)
-	make -C $(LIBFT_DIR)
-	$(CC) $(SEGINFOFLAG) $(LIBS) $(OBJ) -o $(NAME)
+	#make -C $(LIBFT_DIR)
+	$(CC) $(LIBS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
