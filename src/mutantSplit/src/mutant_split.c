@@ -17,14 +17,11 @@
 #include "mutant_split.h"
 #include "libft.h"
 
-static void		init_str(t_split_str *str, char *s, char c)
-{
-	str->current = s;
-	str->after_protecting = skip_protected(str->current);
-	str->separator = c;
-	str->new_word_flag = 1;
-
-}
+/*
+** ==========================================================================
+**                            Counting word len.
+** ==========================================================================
+*/
 
 /*
 ** From count_elements.c
@@ -57,7 +54,7 @@ static size_t	count_and_skip_symbol(t_split_str *s)
 	return (1);
 }
 
-size_t			count_word_len(t_split_str s)
+size_t			count_string_len(t_split_str s)
 {
 	size_t	len;
 
@@ -72,16 +69,91 @@ size_t			count_word_len(t_split_str s)
 	return (len);
 }
 
-void				skip_sep(t_split_str *s)
+/*
+** ==========================================================================
+** ==========================================================================
+*/
+
+/*
+** ==========================================================================
+**                            Copying strings.
+** ==========================================================================
+*/
+
+char			*copy_and_skip_symbol(char *dst, t_split_str *s)
 {
-	while (*s->current == s->separator && *s->current != '\0')
-	{
-		s->current += 1;
-	}
+	*dst = *s->current;
+	dst += 1;
+	s->current += 1;
 	s->after_protecting = skip_protected(s->current);
+	return (dst);
 }
 
-static void		skip_word(t_split_str *s)
+char			*copy_and_skip_protected(char *dst, t_split_str *s)
+{
+	if (*s->current == '\\')
+	{
+		s->current += 1;
+		if (*s->current != '\0')
+		{
+			*dst = *s->current;
+			dst += 1;
+			s->current += 1;
+		}
+	}
+	else if (*s->current == '\'')
+	{
+		s->current += 1;
+		if (*s->current != '\0')
+		{
+			while (*s->current != '\'')
+			{
+				*dst = *s->current;
+				dst += 1;
+				s->current += 1;
+			}
+			s->current += 1;
+		}
+	}
+	else if (*s->current == '\"')
+	{
+		s->current += 1;
+		if (*s->current != '\0')
+		{
+			while (*s->current != '\"')
+			{
+				*dst = *s->current;
+				dst += 1;
+				s->current += 1;
+			}
+			s->current += 1;
+		}
+	}
+	s->after_protecting = skip_protected(s->current);
+	return (dst);
+}
+
+static void		copy_string(char *dst, t_split_str s)
+{
+	char	*dst_begin;
+
+	dst_begin = dst;
+	while (is_end_or_sep(&s) == false)
+	{
+		if (is_protect(*s.current))
+			dst = copy_and_skip_protected(dst, &s);
+		else
+			dst = copy_and_skip_symbol(dst, &s);
+	}
+	*dst = '\0';
+	printf("~~~~~STRING~~~~~\n");
+
+	printf("|%s|\n", dst_begin);
+
+	printf("~~~~~~~~~~~~~~~~\n");
+}
+
+static void		skip_string(t_split_str *s)
 {
 	while (is_end_or_sep(s) == false)
 	{
@@ -100,14 +172,62 @@ static void		skip_word(t_split_str *s)
 	s->after_protecting = skip_protected(s->current);
 }
 
-void			copy_and_skip_word(char *dst, t_split_str *s)
+char			*copy_and_skip_string(t_split_str *s)
 {
-	size_t	word_len;
+	char	*string;
+	size_t	string_len;
 
-	//printf("*s->current: |%c|\n", *s->current);
-	word_len = count_word_len(*s);
-	skip_word(s);
-	printf("word    len = %zu\n", word_len);
+	string_len = count_string_len(*s);
+	string = (char*)malloc(sizeof(char) * (string_len + 1));
+	if (string == NULL)
+		return (NULL);
+
+	copy_string(string, *s);
+
+
+	skip_string(s);
+	printf("string  len = %zu\n", string_len);
+	return (string);
+
+}
+
+void			skip_sep(t_split_str *s)
+{
+	while (*s->current == s->separator && *s->current != '\0')
+	{
+		s->current += 1;
+	}
+	s->after_protecting = skip_protected(s->current);
+}
+
+static size_t	copy_strings(t_arr_strings *strings, t_split_str s)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < strings->len)
+	{
+		skip_sep(&s);
+		strings->arr[i] = copy_and_skip_string(&s);
+		free(strings->arr[i]);
+		if (strings->arr[i] == NULL)
+			break ;
+		i += 1;
+	}
+	return (i);
+}
+
+/*
+** ==========================================================================
+** ==========================================================================
+*/
+
+static void		init_str(t_split_str *str, char *s, char c)
+{
+	str->current = s;
+	str->after_protecting = skip_protected(str->current);
+	str->separator = c;
+	str->new_word_flag = 1;
 
 }
 
@@ -128,14 +248,9 @@ char			**mutant_split(const char *s, char c)
 		return (NULL);
 	strings.arr[strings.len] = NULL;
 
+	copy_strings(&strings, str);
 
-	i = 0;
-	while (i < strings.len)
-	{
-		skip_sep(&str);
-		copy_and_skip_word(strings.arr[i], &str);
-		i += 1;
-	}
+
 
 
 

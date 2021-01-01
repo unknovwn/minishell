@@ -23,7 +23,7 @@ SEGINFOFLAG = -fsanitize=address
 INCLD = include/
 
 .c.o:
-	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) $(SEGINFOFLAG) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 ################################################################################
 
@@ -31,7 +31,7 @@ INCLD = include/
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
-	$(CC) $(LIBS) $(OBJ) -o $(NAME)
+	$(CC) $(SEGINFOFLAG) $(LIBS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
