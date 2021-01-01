@@ -37,8 +37,17 @@ typedef struct		s_split_str
 }					t_split_str;
 
 size_t		count_elements(t_split_str str);
+int			is_protect(char c);
+int			is_end_or_sep(t_split_str *s);
 
 char		*skip_protected(const char *s);
+
+size_t			copy_strings(t_arr_strings *strings, t_split_str s);
+size_t			count_string_len(t_split_str s);
+void			skip_sep(t_split_str *s);
+void			skip_string(t_split_str *s);
+char	*copy_and_skip_backslash_protecting(char *dst, t_split_str *s);
+char	*copy_and_skip_quotes_protecting(char *dst, t_split_str *s);
 
 #endif
 
