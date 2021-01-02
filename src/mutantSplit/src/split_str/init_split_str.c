@@ -19,6 +19,4 @@ void	init_str(t_split_str *str, char *s, char c)
 	str->after_protecting = skip_protected(str->current);
 	str->separator = c;
 	str->new_word_flag = 1;
-
 }
-

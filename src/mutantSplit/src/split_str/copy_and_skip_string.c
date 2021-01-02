@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
 #include <stdbool.h>
 #include "mutant_split.h"
 #include "split_str.h"
@@ -48,11 +45,6 @@ static void	copy_string(char *dst, t_split_str s)
 			dst = copy_and_skip_symbol(dst, &s);
 	}
 	*dst = '\0';
-	printf("~~~~~STRING~~~~~\n");
-
-	printf("|%s|\n", dst_begin);
-
-	printf("~~~~~~~~~~~~~~~~\n");
 }
 
 char		*copy_and_skip_string(t_split_str *s)
@@ -67,7 +59,5 @@ char		*copy_and_skip_string(t_split_str *s)
 	string[string_len] = '\0';
 	copy_string(string, *s);
 	skip_string(s);
-	printf("string  len = %zu\n", string_len);
 	return (string);
-
 }
