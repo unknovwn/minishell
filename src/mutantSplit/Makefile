@@ -2,23 +2,20 @@ NAME = mutant_split
 
 SOURCE_FILES =	main.c \
 				mutant_split.c \
-				$(COUNTING_STRINGS) \
-				$(COPYING_STRINGS)
+				$(STRUCT_SPLIT_STR)
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
-#############################  COPYING STRINGS #################################
+#############################  STRUCT SPLIT STR ################################
 
-COUNTING_STRINGS_FILES =	count_strings.c \
-						count_strings_utils.c
-COUNTING_STRINGS = $(addprefix counting_strings/, $(COUNTING_STRINGS_FILES))
-
-################################################################################
-
-#############################  COPYING STRINGS #################################
-
-COPYING_STRINGS_FILES =	copy_strings.c \
-						copy_strings_utils.c
-COPYING_STRINGS = $(addprefix copying_strings/, $(COPYING_STRINGS_FILES))
+STRUCT_SPLIT_STR_FILES =	init_split_str.c \
+							skip_sep.c \
+							skip_string.c \
+							count_string_len.c \
+							count_strings.c \
+							copy_and_skip_string.c \
+							copy_strings_utils.c \
+							copy_strings.c
+STRUCT_SPLIT_STR = $(addprefix struct_split_str/, $(STRUCT_SPLIT_STR_FILES))
 
 ################################################################################
 

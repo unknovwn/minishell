@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_and_skip_string.c                             :+:      :+:    :+:   */
+/*   copy_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 00:59:51 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 00:59:52 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/02 02:44:43 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/02 02:44:44 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	copy_string(char *dst, t_split_str s)
 	printf("~~~~~~~~~~~~~~~~\n");
 }
 
-static char	*copy_and_skip_string(t_split_str *s)
+char		*copy_and_skip_string(t_split_str *s)
 {
 	char	*string;
 	size_t	string_len;
@@ -65,27 +65,8 @@ static char	*copy_and_skip_string(t_split_str *s)
 		return (NULL);
 	string[string_len] = '\0';
 	copy_string(string, *s);
-
-
 	skip_string(s);
 	printf("string  len = %zu\n", string_len);
 	return (string);
 
-}
-
-size_t		copy_strings(t_arr_strings *strings, t_split_str s)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < strings->len)
-	{
-		skip_sep(&s);
-		strings->arr[i] = copy_and_skip_string(&s);
-		free(strings->arr[i]);
-		if (strings->arr[i] == NULL)
-			break ;
-		i += 1;
-	}
-	return (i);
 }
