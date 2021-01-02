@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
+
 #include "mutant_split.h"
 #include "split_str.h"
 
@@ -39,4 +40,3 @@ char	*copy_and_skip_quotes_protecting(char *dst, t_split_str *s)
 	s->after_protecting = skip_protected(s->current);
 	return (dst);
 }
-

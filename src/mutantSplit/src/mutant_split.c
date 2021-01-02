@@ -6,15 +6,14 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:28:05 by gdrive            #+#    #+#             */
-/*   Updated: 2020/12/29 14:28:06 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/02 05:26:13 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
-
+#include <stdlib.h>
 #include <stdbool.h>
-#include "mutant_split.h"
+
 #include "split_str.h"
 
 static void		free_strings(t_arr_strings *strings)
@@ -35,11 +34,10 @@ static void		free_strings(t_arr_strings *strings)
 char			**mutant_split(const char *s, char c)
 {
 	t_arr_strings	strings;
-	t_split_str	str;
+	t_split_str		str;
 
 	init_str(&str, (char*)s, c);
 	strings.len = count_strings(str);
-	printf("------MyLen = %zu\n", strings.len);
 	strings.arr = (char**)malloc(sizeof(char*) * (strings.len + 1));
 	if (strings.arr == NULL)
 	{
@@ -54,4 +52,3 @@ char			**mutant_split(const char *s, char c)
 	}
 	return (strings.arr);
 }
-
