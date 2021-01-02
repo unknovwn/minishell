@@ -1,7 +1,6 @@
-NAME = mutant_split
+NAME = mutant_split.a
 
-SOURCE_FILES =	main.c \
-				mutant_split.c \
+SOURCE_FILES =	mutant_split.c \
 				$(STRUCT_SPLIT_STR)
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
@@ -15,7 +14,7 @@ STRUCT_SPLIT_STR_FILES =	init_split_str.c \
 							copy_and_skip_string.c \
 							copy_strings_utils.c \
 							copy_strings.c
-STRUCT_SPLIT_STR = $(addprefix split_str/, $(STRUCT_SPLIT_STR_FILES))
+STRUCT_SPLIT_STR = $(addprefix split_str/, $(STRUCT_SPLIT_STR_FILES)) \
 
 ################################################################################
 
@@ -31,20 +30,21 @@ LIBS = -L$(LIBFT_DIR) -lft
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
+MAKELIB = ar rc
 CFLAGS = -Wall -Wextra -Werror
 SEGINFOFLAG = -fsanitize=address
 INCLD = include/
 
 .c.o:
-	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 ################################################################################
 
 #############################  MANDATORY COMMANDS  #############################
 
 $(NAME): $(OBJ)
-	#make -C $(LIBFT_DIR)
-	$(CC) $(LIBS) $(OBJ) -o $(NAME)
+	$(MAKELIB) $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 all: $(NAME)
 
@@ -53,11 +53,9 @@ debug: $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
-	#make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
-	#make fclean -C $(LIBFT_DIR)
 
 re:	fclean	all
 
