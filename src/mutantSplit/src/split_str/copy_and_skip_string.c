@@ -15,6 +15,7 @@
 
 #include <stdbool.h>
 #include "mutant_split.h"
+#include "split_str.h"
 
 static char	*copy_and_skip_symbol(char *dst, t_split_str *s)
 {
@@ -28,7 +29,7 @@ static char	*copy_and_skip_symbol(char *dst, t_split_str *s)
 static char	*copy_and_skip_protected(char *dst, t_split_str *s)
 {
 	if (*s->current == '\\')
-		dst = copy_and_skip_backslash_protecting(dst, s);
+		dst = copy_and_skip_bslash_protecting(dst, s);
 	else
 		dst = copy_and_skip_quotes_protecting(dst, s);
 	return (dst);

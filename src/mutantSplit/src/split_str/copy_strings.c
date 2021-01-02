@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_result_len.c                                 :+:      :+:    :+:   */
+/*   copy_and_skip_string.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 15:24:19 by gdrive            #+#    #+#             */
-/*   Updated: 2020/12/29 15:24:23 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/02 00:59:51 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/02 00:59:52 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,20 @@
 
 #include <stdbool.h>
 #include "mutant_split.h"
+#include "split_str.h"
 
-size_t		count_strings(t_split_str s)
+size_t		copy_strings(t_arr_strings *strings, t_split_str s)
 {
-	size_t		word_count;
+	size_t	i;
 
-	word_count = 0;
-	while (*s.current != '\0')
+	i = 0;
+	while (i < strings->len)
 	{
-		if (*s.current != s.separator)
-		{
-			word_count += 1;
-			skip_string(&s);
-		}
-		else
-			skip_sep(&s);
+		skip_sep(&s);
+		strings->arr[i] = copy_and_skip_string(&s);
+		if (strings->arr[i] == NULL)
+			break ;
+		i += 1;
 	}
-	return (word_count);
+	return (i);
 }
-

@@ -15,7 +15,7 @@
 
 #include <stdbool.h>
 #include "mutant_split.h"
-#include "libft.h"
+#include "split_str.h"
 
 int			is_new_word(t_split_str *s);
 int			is_end_or_sep(t_split_str *s);
