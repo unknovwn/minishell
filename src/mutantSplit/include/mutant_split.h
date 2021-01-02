@@ -36,13 +36,15 @@ typedef struct		s_split_str
 	uint8_t	new_word_flag;
 }					t_split_str;
 
-size_t		count_elements(t_split_str str);
+void	init_str(t_split_str *str, char *s, char c);
+size_t		count_strings(t_split_str str);
 int			is_protect(char c);
 int			is_end_or_sep(t_split_str *s);
 
 char		*skip_protected(const char *s);
 
 size_t			copy_strings(t_arr_strings *strings, t_split_str s);
+char		*copy_and_skip_string(t_split_str *s);
 size_t			count_string_len(t_split_str s);
 void			skip_sep(t_split_str *s);
 void			skip_string(t_split_str *s);

@@ -13,26 +13,6 @@
 #include <stdbool.h>
 #include "mutant_split.h"
 
-void	skip_string(t_split_str *s)
-{
-	while (is_end_or_sep(s) == false)
-	{
-		if (s->current != s->after_protecting)
-			s->current = s->after_protecting;
-		else if (is_end_or_sep(s) == false)
-			s->current += 1;
-		s->after_protecting = skip_protected(s->current);
-	}
-	s->after_protecting = skip_protected(s->current);
-}
-
-void	skip_sep(t_split_str *s)
-{
-	while (*s->current == s->separator && *s->current != '\0')
-		s->current += 1;
-	s->after_protecting = skip_protected(s->current);
-}
-
 char	*copy_and_skip_backslash_protecting(char *dst, t_split_str *s)
 {
 	s->current += 1;
