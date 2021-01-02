@@ -15,7 +15,7 @@ STRUCT_SPLIT_STR_FILES =	init_split_str.c \
 							copy_and_skip_string.c \
 							copy_strings_utils.c \
 							copy_strings.c
-STRUCT_SPLIT_STR = $(addprefix struct_split_str/, $(STRUCT_SPLIT_STR_FILES))
+STRUCT_SPLIT_STR = $(addprefix split_str/, $(STRUCT_SPLIT_STR_FILES))
 
 ################################################################################
 

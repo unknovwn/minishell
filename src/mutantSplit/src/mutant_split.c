@@ -15,6 +15,7 @@
 
 #include <stdbool.h>
 #include "mutant_split.h"
+#include "split_str.h"
 
 static void		free_strings(t_arr_strings *strings)
 {

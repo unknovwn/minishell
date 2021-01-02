@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skip_sep.c                                         :+:      :+:    :+:   */
+/*   count_result_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 02:52:35 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 02:52:36 by gdrive           ###   ########.fr       */
+/*   Created: 2020/12/29 15:24:19 by gdrive            #+#    #+#             */
+/*   Updated: 2020/12/29 15:24:23 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <unistd.h>
 
 #include <stdbool.h>
 #include "mutant_split.h"
+#include "split_str.h"
 
-static int	is_sep_and_is_not_end(t_split_str *s)
+size_t		count_strings(t_split_str s)
 {
-	return (*s->current == s->separator && *s->current != '\0');
+	size_t		word_count;
+
+	word_count = 0;
+	while (*s.current != '\0')
+	{
+		if (*s.current != s.separator)
+		{
+			word_count += 1;
+			skip_string(&s);
+		}
+		else
+			skip_sep(&s);
+	}
+	return (word_count);
 }
 
-void		skip_sep(t_split_str *s)
-{
-	while (is_sep_and_is_not_end(s))
-		s->current += 1;
-	s->after_protecting = skip_protected(s->current);
-}

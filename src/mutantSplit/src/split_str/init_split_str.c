@@ -10,11 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
-#include <stdbool.h>
 #include "mutant_split.h"
+#include "split_str.h"
 
 void	init_str(t_split_str *str, char *s, char c)
 {
