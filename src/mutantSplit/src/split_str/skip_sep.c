@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mutant_split.h"
 #include "split_str.h"
 
 static int	is_sep_and_is_not_end(t_split_str *s)

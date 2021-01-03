@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
-#include "mutant_split.h"
 #include "split_str.h"
 
 size_t		count_strings(t_split_str s)

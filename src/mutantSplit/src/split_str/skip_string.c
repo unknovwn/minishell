@@ -12,7 +12,6 @@
 
 #include <stdbool.h>
 
-#include "mutant_split.h"
 #include "split_str.h"
 
 int		is_protect(char c)

@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
-#include "mutant_split.h"
 #include "split_str.h"
 
 char	*copy_and_skip_bslash_protecting(char *dst, t_split_str *s)

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "mutant_split.h"
+
 #include "split_str.h"
 
 static char	*copy_and_skip_symbol(char *dst, t_split_str *s)
