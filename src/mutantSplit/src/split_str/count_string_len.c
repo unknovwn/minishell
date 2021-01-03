@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "mutant_split.h"
+
 #include "split_str.h"
 
 static size_t	count_and_skip_protected(t_split_str *s)
