@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/09 18:24:38 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/09 21:08:20 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #define BUFFER_SIZE 1024
 
+/* Remove "^C" from terminal */
 static void		handle_inter(int sig)
 {
 	if (sig == 2)
@@ -28,9 +29,9 @@ t_command		**parse_command(char *command)
 	command_table = (t_command**)malloc(sizeof(t_command*) * 2);
 	command_table[0] = (t_command*)malloc(sizeof(t_command));
 	if (ft_strlen(command) == 0)
-		(command_table[0])->argv = ft_split("exit", ft_isspace);
+		(command_table[0])->argv = super_split("exit", ft_isspace);
 	else
-		(*command_table)->argv = ft_split(command, ft_isspace);
+		(*command_table)->argv = super_split(command, ft_isspace);
 	command_table[1] = 0;
 	return (command_table);
 }
