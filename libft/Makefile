@@ -23,15 +23,19 @@ INCLD = ../include/
 	$(CC) $(CFLAGS) -I$(INCLD) -c $<
 
 $(NAME): $(OBJ)
+	make -C ft_fprintf/
+	cp ft_fprintf/libftfprintf.a ./$(NAME)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 all: $(NAME)
 
 clean:
+	make clean -C ft_fprintf/
 	rm -rf $(OBJ)
 
 fclean: clean
+	make fclean -C ft_fprintf/
 	rm -rf $(NAME)
 
 re: fclean all

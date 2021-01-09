@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/09 21:11:59 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:36:51 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ size_t				ft_strlen(const char *str);
 void				ft_putstr(char *str, int fd);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int					ft_strcmp(const char *s1, const char *s2);
+int					ft_fprintf(int fd, const char *s, ...);
 
 #endif
