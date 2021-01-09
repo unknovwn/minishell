@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #ifndef ECHO_H
-#define ECHO_H
+# define ECHO_H
+
+# include <stdint.h>
+
+typedef struct		s_printing
+{
+	uint8_t			newline_flag;
+	char			**args;
+	int				argc;
+	char			**current;
+	char			*buff;
+	size_t			buff_len;
+}					t_printing;
 
 #endif
