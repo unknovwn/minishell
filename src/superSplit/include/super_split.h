@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_result_len.c                                 :+:      :+:    :+:   */
+/*   mutant_split.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 15:24:19 by gdrive            #+#    #+#             */
-/*   Updated: 2020/12/29 15:24:23 by gdrive           ###   ########.fr       */
+/*   Created: 2020/12/29 15:03:32 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/02 05:28:09 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "split_str.h"
+#ifndef SUPER_SPLIT_H
+# define SUPER_SPLIT_H
 
-size_t		count_strings(t_split_str s)
-{
-	size_t		word_count;
+# include <stdint.h>
+# include <stdlib.h>
 
-	word_count = 0;
-	while (*s.current != '\0')
-	{
-		if (*s.current != s.separator)
-		{
-			word_count += 1;
-			skip_string(&s);
-		}
-		else
-			skip_sep(&s);
-	}
-	return (word_count);
-}
+char		**super_split(const char *s, int (*delim_comparator)(int));
+
+#endif
