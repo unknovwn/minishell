@@ -7,7 +7,6 @@ SRC = free_string_arr.c \
 	  ft_lstlast.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \
-	  ft_split.c \
 	  ft_isspace.c \
 	  ft_strlen.c \
 	  ft_putstr.c \
