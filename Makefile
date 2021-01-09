@@ -1,6 +1,8 @@
 NAME = minishell
 
-SOURCE_FILES = minishell.c
+SOURCE_FILES = minishell.c \
+			   free_command_table.c \
+			   read_command.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################

@@ -8,7 +8,11 @@ SRC = free_string_arr.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \
 	  ft_split.c \
-	  ft_isspace.c
+	  ft_isspace.c \
+	  ft_strlen.c \
+	  ft_putstr.c \
+	  ft_strlcpy.c \
+	  ft_strcmp.c
 
 OBJ = $(SRC:.c=.o)
 
