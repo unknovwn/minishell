@@ -47,7 +47,7 @@ char	*skip_protected(const char *s)
 int		is_end_or_sep(t_split_str *s)
 {
 	return (*s->current == '\0' ||
-			*s->current == s->separator);
+			s->delim_comparator(*s->current) == true);
 }
 
 void	skip_string(t_split_str *s)

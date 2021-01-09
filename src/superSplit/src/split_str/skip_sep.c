@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_and_skip_string.c                             :+:      :+:    :+:   */
+/*   skip_sep.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 00:59:51 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 00:59:52 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/02 02:52:35 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/02 02:52:36 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include "split_str.h"
 
-size_t		copy_strings(t_arr_strings *strings, t_split_str s)
+static int	is_sep_and_is_not_end(t_split_str *s)
 {
-	size_t	i;
+	return (s->delim_comparator(*s->current) == true && *s->current != '\0');
+}
 
-	i = 0;
-	while (i < strings->len)
+void		skip_sep(t_split_str *s)
+{
+	while (is_sep_and_is_not_end(s))
 	{
-		skip_sep(&s);
-		strings->arr[i] = copy_and_skip_string(&s);
-		if (strings->arr[i] == NULL)
-			break ;
-		i += 1;
+		s->current += 1;
 	}
-	return (i);
+	s->after_protecting = skip_protected(s->current);
 }

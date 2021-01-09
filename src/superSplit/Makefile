@@ -1,6 +1,6 @@
-NAME = mutant_split.a
+NAME = super_split.a
 
-SOURCE_FILES =	mutant_split.c \
+SOURCE_FILES =	super_split.c \
 				$(STRUCT_SPLIT_STR)
 SRC = $(addprefix src/, $(SOURCE_FILES))
 

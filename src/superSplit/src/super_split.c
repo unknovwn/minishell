@@ -31,12 +31,12 @@ static void		free_strings(t_arr_strings *strings)
 	free(begin);
 }
 
-char			**mutant_split(const char *s, char c)
+char			**super_split(const char *s, int (*delim_comparator)(int))
 {
 	t_arr_strings	strings;
 	t_split_str		str;
 
-	init_str(&str, (char*)s, c);
+	init_str(&str, (char*)s, delim_comparator);
 	strings.len = count_strings(str);
 	strings.arr = (char**)malloc(sizeof(char*) * (strings.len + 1));
 	if (strings.arr == NULL)

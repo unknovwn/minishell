@@ -12,7 +12,6 @@
 
 #ifndef SPLIT_STR_H
 # define SPLIT_STR_H
-
 # include <stdlib.h>
 # include <stdint.h>
 
@@ -26,7 +25,7 @@ typedef struct		s_split_str
 {
 	char			*current;
 	char			*after_protecting;
-	char			separator;
+	int				(*delim_comparator)(int);
 }					t_split_str;
 
 /*
@@ -35,7 +34,9 @@ typedef struct		s_split_str
 ** ==========================================================================
 */
 
-void				init_str(t_split_str *str, char *s, char c);
+void				init_str(t_split_str *str,
+							char *s,
+							int (*delim_comparator)(int));
 
 int					is_end_or_sep(t_split_str *s);
 
