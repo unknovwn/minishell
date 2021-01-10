@@ -6,25 +6,22 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/10 17:56:13 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/10 19:46:24 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void		handle_inter(int sig)
-{
-	if (sig == 2)
-		ft_putstr("\n", STDOUT);
-}
-
-int	main(void)
+int			main(void)
 {
 	t_command_tab	*command_table;
 	int				pid;
 	int				status;
 
-	signal(SIGINT, handle_inter);
+	if ((signal(SIGINT, SIG_IGN)) == SIG_ERR)
+		ft_putstr("\nCannot catch SIGINT\n", STDERR);
+	if ((signal(SIGQUIT, SIG_IGN)) == SIG_ERR)
+		ft_putstr("\nCannot catch SIGQUIT\n", STDERR);
 	while (1)
 	{
 		if ((pid = fork()) == -1)

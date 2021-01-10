@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/10 17:31:43 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/10 19:51:08 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 #define BUFFER_SIZE 1024
 
-/* Remove "^C" from terminal */
-static void		handle_inter(int sig)
+/* Backspace special characters from terminal */
+void			handle_signal(int sig)
 {
 	if (sig == SIGINT)
+	{
+		ft_putstr("\b\b  \b\b\n", STDOUT);
+		exit(0);
+	}
+	if (sig == SIGQUIT)
 		ft_putstr("\b\b  \b\b", STDOUT);
-	exit(0);
 }
 
 t_command_tab	*parse_command(char *command)
@@ -38,10 +42,7 @@ t_command_tab	*parse_command(char *command)
 	}
 	commands = command_table->commands;
 	if (ft_strlen(command) == 0)
-	{
-		ft_putstr("exit\n", STDOUT);
 		(commands[0]).argv = super_split("exit", ft_isspace);
-	}
 	else
 		(commands[0]).argv = super_split(command, ft_isspace);
 	return (command_table);
@@ -55,7 +56,10 @@ t_command_tab	*read_command(void)
 	int		ctrld_flag;
 	size_t	command_len;
 
-	signal(SIGINT, handle_inter);
+	if ((signal(SIGINT, handle_signal)) == SIG_ERR)
+		ft_putstr("\nCannot catch SIGINT\n", STDERR);
+	if ((signal(SIGQUIT, handle_signal)) == SIG_ERR)
+		ft_putstr("\nCannot catch SIGQUIT\n", STDERR);
 	command_len = 0;
 	ctrld_flag = 1;
 	ft_putstr(PROMPT_STRING, STDOUT);
@@ -64,7 +68,7 @@ t_command_tab	*read_command(void)
 		if ((count = read(0, buf, BUFFER_SIZE - 1)) == -1)
 			return (0);
 		buf[count] = '\0';
-		ctrld_flag = (buf[count - 1] != '\n');
+		ctrld_flag = (count == 0 || buf[count - 1] != '\n');
 		command_len += count;
 		ft_strlcpy(&command[command_len - count], buf, BUFFER_SIZE - command_len);
 		if (ctrld_flag)

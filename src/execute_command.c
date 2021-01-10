@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/10 17:24:28 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/10 18:20:09 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	execute_command(t_command_tab *command_table)
 	commands = command_table->commands;
 	if ((strcmp(((commands[0]).argv)[0], "exit")) == 0)
 	{
+		ft_putstr("exit\n", STDOUT);
 		free_command_table(command_table);
 		exit(MINISHELL_EXIT);
 	}
 	if (((commands[0]).argv)[0])
-		printf("command: \"%s\"\n", ((commands[0]).argv)[0]);
+		ft_fprintf(STDOUT, "\"%s\" executed\n", ((commands[0]).argv)[0]);
 }
