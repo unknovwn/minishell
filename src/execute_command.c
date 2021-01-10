@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_command_table.c                               :+:      :+:    :+:   */
+/*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 17:47:08 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/10 17:11:39 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/10 17:24:28 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
 
-void	free_command_table(t_command_tab *command_table)
+void	execute_command(t_command_tab *command_table)
 {
-	int			i;
 	t_command	*commands;
 
 	commands = command_table->commands;
-	i = command_table->number_of_commands;
-	while (i--)
+	if ((strcmp(((commands[0]).argv)[0], "exit")) == 0)
 	{
-		free_string_arr(commands->argv);
-		commands++;
+		free_command_table(command_table);
+		exit(MINISHELL_EXIT);
 	}
-	free(command_table->commands);
-	free(command_table);
+	if (((commands[0]).argv)[0])
+		printf("command: \"%s\"\n", ((commands[0]).argv)[0]);
 }

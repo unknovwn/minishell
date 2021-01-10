@@ -2,13 +2,15 @@ NAME = minishell
 
 SOURCE_FILES = minishell.c \
 			   free_command_table.c \
-			   read_command.c
+			   read_command.c \
+			   execute_command.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################
 
 LIBFT_DIR = libft/
-LIBS = -L$(LIBFT_DIR) -lft
+SUPER_SPLIT_DIR = src/superSplit/
+LIBS = $(LIBFT_DIR)libft.a $(SUPER_SPLIT_DIR)super_split.a
 
 ################################################################################
 
@@ -30,6 +32,7 @@ INCLD = include/
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
+	make -C $(SUPER_SPLIT_DIR)
 	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
@@ -40,10 +43,12 @@ debug: $(OBJ)
 clean:
 	rm -rf $(OBJ)
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(SUPER_SPLIT_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C $(LIBFT_DIR)
+	make fclean -C $(SUPER_SPLIT_DIR)
 
 re:	fclean	all
 
