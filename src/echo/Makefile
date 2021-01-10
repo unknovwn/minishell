@@ -1,6 +1,7 @@
 NAME = echo
 
 SOURCE_FILES =	echo.c \
+				set_args_to_buff.c
 
 SRC = $(addprefix src/, $(SOURCE_FILES))
 

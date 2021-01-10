@@ -16,8 +16,6 @@
 ../echo """""""""",         wtf     :""
 ../echo '"""""""""",         wtf     :""'
 ../echo hello                       happy                               man
-../echo $?
-../echo         \'\"\\
 ../echo ~
 ../echo hello sad man
 ../echo $?
@@ -35,5 +33,4 @@
 ../echo "\$PWD" "\PWD" 
 ../echo "\""
 ../echo "\'"
-../echo ''\''"a|"\'q'a'\a'w'
 ../echo
