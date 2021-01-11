@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 18:39:34 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/11 22:34:43 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_fprintf(int fd, const char *s, ...);
 char				*ft_remove_chars(char *str, int (*char_comparator)(int));
+char				*ft_uitoa(unsigned int n);
 
 #endif

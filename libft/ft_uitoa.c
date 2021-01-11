@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_command.c                                  :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 22:37:01 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/11 21:35:27 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/11 22:38:00 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	execute_command(t_command_tab *command_table)
+size_t	get_number_len(unsigned int n)
 {
-	t_command	*commands;
+	size_t len;
 
-	commands = command_table->commands;
-	if ((strcmp(((commands[0]).argv)[0], "exit")) == 0)
+	len = !n;
+	while (n)
 	{
-		ft_putstr("exit\n", STDOUT);
-		free_command_table(command_table);
-		exit(MINISHELL_EXIT);
+		len++;
+		n /= 10;
 	}
-	if (((commands[0]).argv)[0])
-		ft_fprintf(STDOUT, "\"%s\" executed\n", ((commands[0]).argv)[0]);
+	return (len);
+}
+
+char	*ft_uitoa(unsigned int n)
+{
+	char	*result;
+	size_t	result_len;
+
+	result_len = get_number_len(n);
+	if (!(result = (char *)malloc(sizeof(char) * (result_len + 1))))
+		return (0);
+	while (result_len)
+	{
+		result[--result_len] = n % 10;
+		n /= 10;
+	}
+	return (0);
 }

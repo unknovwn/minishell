@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 19:21:12 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/11 22:37:13 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int				has_not_closed_pipe(char *command)
 	}
 	command_end = command_without_spaces
 		+ (ft_strlen(command_without_spaces) - 1);
-	ft_fprintf(STDOUT, "\"%s\"\n", command_without_spaces);
 	return (*command_end == '|' && command_end > command_without_spaces
 			&& *(command_end - 1) != '|' && *(command_end - 1) != ';');
 }

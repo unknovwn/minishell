@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:03:31 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 17:15:41 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/11 22:36:53 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ typedef struct	s_command_tab {
 	t_command	*commands;
 	size_t		number_of_commands;
 }				t_command_tab;
+
+typedef struct	s_env_variable {
+	char	*name;
+	char	*value;
+}				t_env_variable;
 
 t_command_tab	*read_command(void);
 t_command_tab	*parse_command(char *command);
