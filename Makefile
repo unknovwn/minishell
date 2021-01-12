@@ -6,8 +6,10 @@ SOURCE_FILES = minishell.c \
 			   execute_command.c \
 			   parse_command.c \
 			   env_utils.c \
-			   insert_env_variables.c \
-			   print_error_and_exit.c
+			   print_error_and_exit.c \
+			   checkingSyntaxErrors/check_syntax_errors.c \
+			   checkingSyntaxErrors/semicolon_and_pipe.c \
+			   checkingSyntaxErrors/skipping.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################

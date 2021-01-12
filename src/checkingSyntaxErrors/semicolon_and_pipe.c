@@ -6,15 +6,15 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 18:51:22 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/11 18:51:22 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/12 22:02:57 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "skipping.h" 
-#include "check_syntax_errors.h" 
+#include "skipping.h"
+#include "check_syntax_errors.h"
 
 char	*check_error_near(char *current)
 {

@@ -6,11 +6,13 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 21:40:15 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:22:00 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_list		*g_env;
 
 t_list		*init_env(void)
 {
@@ -29,7 +31,6 @@ t_list		*init_env(void)
 
 int			main(void)
 {
-	t_list			*g_env;
 	t_command_tab	*command_table;
 	int				pid;
 	int				status;

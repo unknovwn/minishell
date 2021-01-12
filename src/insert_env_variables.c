@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 17:52:08 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 21:13:46 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/12 21:58:25 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		is_env_var(char *command, int index)
 	}
 	return ((backslash_counter % 2 == 0) && !(ft_isspace(command[index + 1])));
 }
-size_t	*count_vars(char *command)
+size_t	count_vars(char *command)
 {
 	size_t	count;
 	int		i;
@@ -83,7 +83,6 @@ char	*insert_env_variables(char *command)
 	{
 		if (is_env_var(command, i))
 		{
-
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 21:44:38 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/12 21:57:26 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "super_split.h"
+# include "check_syntax_errors.h"
 # include <sys/wait.h>
 # include <sys/errno.h>
 # include <signal.h>
