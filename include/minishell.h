@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 16:09:19 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/12 21:44:38 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,15 @@ t_command_tab	*read_command(void);
 t_command_tab	*parse_command(char *command);
 void			execute_command(t_command_tab *command_table);
 void			free_command_table(t_command_tab *command_table);
+
+void			delete_env_var(void *env_var);
+void			clear_env(void);
+char			*get_env_value(char *name);
+t_env_variable	*create_env_var(char *name, char *value);
+void			add_env_var(char *name, char *value);
+char			*insert_env_variables(char *command);
+void			print_error_and_exit(void);
+
+extern t_list	*g_env;
 
 #endif
