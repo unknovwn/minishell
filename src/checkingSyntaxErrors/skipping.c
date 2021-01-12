@@ -14,7 +14,7 @@
 
 char	*skip_space(char *current)
 {
-	while (ft_isspace(*current) && *current != '\0')
+	while (ft_isspace(*current))
 		current += 1;
 	return (current);
 }
@@ -29,7 +29,7 @@ char	*skip_bslash(char *current)
 
 char	*skip_symbols(char *current, char c)
 {
-	while (*current != '\0' && *current != c)
+	while (*current != c)
 	{
 		if (*current == '\\')
 			current = skip_bslash(current);
