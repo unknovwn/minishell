@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 22:34:43 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/12 16:25:41 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_fprintf(int fd, const char *s, ...);
 char				*ft_remove_chars(char *str, int (*char_comparator)(int));
 char				*ft_uitoa(unsigned int n);
+char				*ft_strdup(const char *str);
 
 #endif
