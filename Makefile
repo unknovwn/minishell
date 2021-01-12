@@ -3,7 +3,11 @@ NAME = minishell
 SOURCE_FILES = minishell.c \
 			   free_command_table.c \
 			   read_command.c \
-			   execute_command.c
+			   execute_command.c \
+			   parse_command.c \
+			   env_utils.c \
+			   insert_env_variables.c \
+			   print_error_and_exit.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################
