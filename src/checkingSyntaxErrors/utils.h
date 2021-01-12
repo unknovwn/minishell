@@ -10,10 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEMICOLON_AND_PIPE_H
-# define SEMICOLON_AND_PIPE_H
+#ifndef UTILS_H
+# define UTILS_H
 
-char	*check_error_near_with_pipe(char *current);
+int		is_semicolon(char c);
+int		is_pipe(char c);
+int		is_redirect(char c);
+
 char	*check_error_near(char *current);
+char	*check_error_near_with_redirect_to(char *current);
 
 #endif

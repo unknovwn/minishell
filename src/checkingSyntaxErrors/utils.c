@@ -10,11 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 
-#include "skipping.h" 
-#include "check_syntax_errors.h" 
+#include "check_syntax_errors.h"
+#include "skipping.h"
+
+int		is_semicolon(char c)
+{
+	return (c == ';');
+}
+
+int		is_pipe(char c)
+{
+	return (c == '|');
+}
+
+int		is_redirect(char c)
+{
+	return (c == '>' || c == '<');
+}
 
 char	*check_error_near(char *current)
 {
@@ -26,12 +40,19 @@ char	*check_error_near(char *current)
 	return (NULL);
 }
 
-char	*check_error_near_with_pipe(char *current)
+char	*check_error_near_with_redirect_to(char *current)
 {
-	if (is_protect(*current))
-		current = skip_protected(current);
-	//printf("%c <-\n", *current);
-	if (*current == ';')
-			return (ERROR_NEAR_SEMICOLON);
-	return (check_error_near(current + 1));
+	if (*(current - 1) == '>' && *(current) == '>')
+		current += 1;
+	current = skip_space(current);
+	if (*current == '>' && *(current + 1) == '>')
+		return (ERROR_NEAR_TWO_REDIRECT_TO);
+	else if (*current == '>')
+		return (ERROR_NEAR_REDIRECT_TO);
+	else if (*current == '<')
+		return (ERROR_NEAR_REDIRECT_FROM);
+	else if (*current == '\n' || *current == '\0')
+		return (ERROR_NEAR_NEWLINE);
+	else
+		return (check_error_near(current));
 }

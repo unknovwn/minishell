@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 char	*skip_space(char *current)
 {
 	while (ft_isspace(*current) && *current != '\0')
-			current += 1;
+		current += 1;
 	return (current);
 }
 

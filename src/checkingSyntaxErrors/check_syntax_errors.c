@@ -10,16 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdint.h>
-#include <stdbool.h>
 
 #include "check_syntax_errors.h"
+#include "utils.h"
+#include "libft.h"
 #include "skipping.h"
-#include "semicolon_and_pipe.h"
-#include "../../include/libft.h"
 
-static char *skip_quotes(char *current, char c)
+static char	*skip_quotes(char *current, char c)
 {
 	while (*current != '\0' && *current != c)
 	{
@@ -37,8 +35,6 @@ static char	*check_multiline_quotes(char *current)
 		current = skip_bslash(current);
 	while (*current != '\0')
 	{
-		if (current == '\0')
-			break ;
 		if (*current == '\'')
 			current = skip_quotes(current, '\'');
 		else if (*current == '\"')
@@ -53,40 +49,26 @@ static char	*check_multiline_quotes(char *current)
 	return (NULL);
 }
 
-char	*check_error_near_with_redirect_to(char *current);
-char	*check_error_near_with_redirect_from(char *current);
-
 static char	*check_near_unexpected_token(char *current)
 {
 	char	*status;
-	uint8_t	redirect_to_flag;
-	uint8_t	redirect_from_flag;
 
-	//printf("INPUT!%s!\n", current);
 	status = NULL;
-	redirect_to_flag = 0;
-	redirect_from_flag = 0;
 	current = skip_space(current);
-	if (*current == ';')
+	if (is_semicolon(*current))
 		return (ERROR_NEAR_SEMICOLON);
-	else if (*current == '|')
+	else if (is_pipe(*current))
 		return (ERROR_NEAR_PIPE);
 	while (*current != '\0' && status == NULL)
 	{
-		//printf("before |%c|\n", *current);
 		if (is_protect(*current))
 			current = skip_protected(current);
-		//printf("after |%c|\n", *current);
-		//current = skip_space(current);
-		//printf("after skip |%c|\n", *current);
-		if (*current == ';')
+		if (is_semicolon(*current))
 			status = check_error_near(current + 1);
-		else if (*current == '|')
-			status = check_error_near_with_pipe(current + 1);
-		else if (*current == '>')
+		else if (is_pipe(*current))
+			status = check_error_near(current + 1);
+		else if (is_redirect(*current))
 			status = check_error_near_with_redirect_to(current + 1);
-		else if (*current == '<')
-			status = check_error_near_with_redirect_from(current + 1);
 		current += 1;
 	}
 	return (status);
