@@ -14,7 +14,8 @@ SRC = free_string_arr.c \
 	  ft_strcmp.c \
 	  ft_remove_chars.c \
 	  ft_uitoa.c \
-	  ft_strdup.c
+	  ft_strdup.c \
+	  ft_strchr.c
 
 OBJ = $(SRC:.c=.o)
 
