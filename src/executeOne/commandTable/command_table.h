@@ -30,8 +30,10 @@ typedef struct	s_command_tab {
 	size_t		len;
 }				t_command_tab;
 
-t_command_tab	*init_default(char *commands);
+t_command_tab	*init_default(char **commands_by_pipe);
+void			free_command_tab(t_command_tab **command_tab);
+
+
 int				set_redirect_command_to_command(t_command_tab *command_tab);
-int				parse_commands(t_command_tab *command_tab);
 
 #endif

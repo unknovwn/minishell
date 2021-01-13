@@ -14,9 +14,8 @@
 #include <sys/errno.h>
 
 #include "command_table.h"
-#include "super_split.h"
-#include "utils.h"
-#include "libft.h"
+#include "../super_split.h"
+#include "../libft.h"
 
 static size_t	count_commands(char **commands)
 {
@@ -47,29 +46,41 @@ static void		set_defult(t_command_tab *command_tab)
 	}
 }
 
-t_command_tab	*init_default(char *commands)
+void			free_command_tab(t_command_tab **command_tab)
 {
-	char			**commands_by_pipe;
+	size_t	i;
+
+	if (*command_tab == NULL)
+		return ;
+	if ((*command_tab)->commands != NULL)
+	{
+		i = 0;
+		while (i < (*command_tab)->len)
+		{
+			free_string_arr((*command_tab)->commands[i].argv);
+				i += 1;
+		}
+		free((*command_tab)->commands);
+	}
+	(*command_tab)->commands = NULL;
+	free(*command_tab);
+	*command_tab = NULL;
+}
+
+t_command_tab	*init_default(char **commands_by_pipe)
+{
 	t_command_tab	*command_tab;
 
-	commands_by_pipe = super_split(commands, is_pipe);
-	if (commands_by_pipe == NULL)
-		return (NULL);
 	command_tab = (t_command_tab*)malloc(sizeof(t_command_tab));
-	if (commands == NULL)
-	{
-		free_string_arr(commands_by_pipe);
+	if (command_tab == NULL)
 		return (NULL);
-	}
 	command_tab->len = count_commands(commands_by_pipe);
 	command_tab->commands = (t_command*)malloc(sizeof(t_command) * command_tab->len);
 	if (command_tab->commands == NULL)
 	{
-		free_string_arr(commands_by_pipe);
 		free(command_tab);
 		return (NULL);
 	}
-	free_string_arr(commands_by_pipe);
 	set_defult(command_tab);
 	return (command_tab);
 }

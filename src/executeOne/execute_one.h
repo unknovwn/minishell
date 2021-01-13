@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 19:50:47 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/12 19:50:51 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/14 00:40:22 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/14 00:40:22 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_ONE
-# define EXECUTE_ONE
+#ifndef EXECUTE_ONE_H
+# define EXECUTE_ONE_H
 
 int	execute_one(char *command);
 
