@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_command.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 17:41:22 by mgeneviv         ###   ########.fr       */
+/*   Created: 2020/10/30 20:10:44 by mgeneviv          #+#    #+#             */
+/*   Updated: 2020/10/30 20:51:13 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	execute_command(t_command_tab *command_table)
+char	*ft_strdup(const char *s1)
 {
-	t_command	*commands;
+	char *copy;
+	char *copy_begin;
 
-	commands = command_table->commands;
-	if ((strcmp(((commands[0]).argv)[0], "exit")) == 0)
-	{
-		free_command_table(command_table);
-		ft_putstr("exit\n", STDOUT);
-		exit(MINISHELL_EXIT);
-	}
-	if (((commands[0]).argv)[0])
-		ft_fprintf(STDOUT, "\"%s\" executed\n", ((commands[0]).argv)[0]);
+	copy = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!copy)
+		return (0);
+	copy_begin = copy;
+	while (*s1)
+		*copy++ = *s1++;
+	*copy = '\0';
+	return (copy_begin);
 }
