@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_command_table.c                               :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 17:47:08 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 18:25:20 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/13 19:09:36 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/13 19:16:31 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-void	free_command_table(t_command_tab *command_table)
+char	*ft_strchr(const char *s, int c)
 {
-	int			i;
-	t_command	*commands;
-
-	commands = command_table->commands;
-	i = command_table->len;
-	while (i--)
+	while (*s)
 	{
-		free_string_arr(commands->argv);
-		commands++;
+		if (*s == (char)c)
+			return ((char*)s);
+		s++;
 	}
-	free(command_table->commands);
-	free(command_table);
+	if ((char)c == '\0')
+		return ((char*)s);
+	return (0);
 }
