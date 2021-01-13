@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 22:37:13 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 16:47:50 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,46 @@ void			handle_signal(int sig)
 		ft_putstr("\b\b  \b\b", STDOUT);
 }
 
-int				has_not_closed_pipe(char *command)
+int				has_not_closed_pipe(char *command, size_t command_len)
 {
-	char	*command_without_spaces;
 	char	*command_end;
+	size_t	backslash_counter;
 
-	if (!(command_without_spaces = ft_remove_chars(command, ft_isspace)))
+	if (command_len < 2)
+		return (0);
+	command_end = &(command[command_len - 1]);
+	while (command_end >= command && ft_isspace(*command_end))
+		command_end--;
+	if (*command_end != '|')
+		return (0);
+	command_end--;
+	backslash_counter = 0;
+	while (command_end >= command && *command_end == '\\')
 	{
-		ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
-		exit(1);
+		backslash_counter++;
+		command_end--;
 	}
-	command_end = command_without_spaces
-		+ (ft_strlen(command_without_spaces) - 1);
-	return (*command_end == '|' && command_end > command_without_spaces
-			&& *(command_end - 1) != '|' && *(command_end - 1) != ';');
+	return (backslash_counter % 2 == 0);
+}
+
+int				ends_with_backslash_newline(char *command, size_t command_len)
+{
+	char	*command_end;
+	size_t	backslash_counter;
+
+	if (command_len < 2)
+		return (0);
+	command_end = &(command[command_len - 1]);
+	if (*command_end != '\n')
+		return (0);
+	command_end--;
+	backslash_counter = 0;
+	while (command_end >= command && *command_end == '\\')
+	{
+		backslash_counter++;
+		command_end--;
+	}
+	return (backslash_counter % 2 != 0);
 }
 
 t_command_tab	*read_command(void)
@@ -50,6 +76,7 @@ t_command_tab	*read_command(void)
 	int		ctrld_flag;
 	size_t	command_len;
 	int		remaining_command_space;
+	char	*syntax_error;
 
 	if ((signal(SIGINT, handle_signal)) == SIG_ERR)
 		ft_putstr("\nCannot catch SIGINT\n", STDERR);
@@ -73,10 +100,23 @@ t_command_tab	*read_command(void)
 			ft_putstr("  \b\b", STDOUT);
 			if (command_len == 0)
 				break ;
+			continue ;
 		}
-		else if (has_not_closed_pipe(command))
+		if ((syntax_error = check_syntax_errors(command)))
 		{
-			ft_putstr("pipe> ", STDOUT);
+			ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, syntax_error);
+			exit(0);
+		}
+		if ((has_not_closed_pipe(command, command_len)))
+		{
+			ft_putstr("> ", STDOUT);
+			ctrld_flag = 1;
+		}
+		if ((ends_with_backslash_newline(command, command_len)))
+		{
+			command[command_len - 2] = '\0';
+			command_len -= 2;
+			ft_putstr("> ", STDOUT);
 			ctrld_flag = 1;
 		}
 	}

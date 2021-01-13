@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 22:07:09 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 13:23:10 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,24 @@ char			*get_env_value(char *name)
 t_env_variable	*create_env_var(char *name, char *value)
 {
 	t_env_variable	*env_var;
+	char			*env_name;
+	char			*env_value;
 
-	if (!(name = ft_strdup(name)))
+	if (!(env_name = ft_strdup(name)))
 		return (0);
-	if (!(value = ft_strdup(value)))
+	if (!(env_value = ft_strdup(value)))
 	{
-		free(name);
+		free(env_name);
 		return (0);
 	}
 	if (!(env_var = (t_env_variable *)malloc(sizeof(t_env_variable))))
 	{
-		free(name);
-		free(value);
+		free(env_name);
+		free(env_value);
 		return (0);
 	}
-	env_var->name = name;
-	env_var->value = value;
+	env_var->name = env_name;
+	env_var->value = env_value;
 	return (env_var);
 }
 

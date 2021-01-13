@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/12 22:22:00 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 16:53:51 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int			main(void)
 		}
 		if ((waitpid(pid, &status, 0)) == -1)
 			ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
-		else {
+		else
+		{
 			if (WEXITSTATUS(status) == MINISHELL_EXIT)
 				break ;
 		}

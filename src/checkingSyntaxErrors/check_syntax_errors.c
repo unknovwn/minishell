@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:50:56 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/12 23:28:52 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 16:18:57 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char	*check_multiline_quotes(char *current)
 	while (*current != '\0')
 	{
 		if (*current == '\'')
-			current = skip_quotes(current, '\'');
+			current = skip_quotes(current + 1, '\'');
 		else if (*current == '\"')
-			current = skip_quotes(current, '\"');
+			current = skip_quotes(current + 1, '\"');
 		if (*current == '\0')
 			return (ERROR_UNCLOSED_QUOTES);
 		else
