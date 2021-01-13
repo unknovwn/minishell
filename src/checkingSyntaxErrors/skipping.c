@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 18:35:14 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/11 18:35:15 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/12 23:29:28 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*skip_bslash(char *current)
 		return (current + 1);
 }
 
-char	*skip_symbols(char *current, char c)
+char	*cse_skip_symbols(char *current, char c)
 {
 	while (*current != c)
 	{
@@ -42,20 +42,20 @@ char	*skip_symbols(char *current, char c)
 		return (current);
 }
 
-int		is_protect(char c)
+int		cse_is_protect(char c)
 {
 	return (c == '\'' || c == '\"' || c == '\\');
 }
 
-char	*skip_protected(char *current)
+char	*cse_skip_protected(char *current)
 {
 	if (*current == '\\')
 		current = skip_bslash(current);
 	else if (*current == '\'')
-		current = skip_symbols(current + 1, '\'');
+		current = cse_skip_symbols(current + 1, '\'');
 	else if (*current == '\"')
-		current = skip_symbols(current + 1, '\"');
-	if (is_protect(*current))
-		current = skip_protected(current);
+		current = cse_skip_symbols(current + 1, '\"');
+	if (cse_is_protect(*current))
+		current = cse_skip_protected(current);
 	return (current);
 }

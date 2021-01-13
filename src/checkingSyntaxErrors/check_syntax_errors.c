@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:50:56 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/11 19:36:22 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/12 23:28:52 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static char	*check_near_unexpected_token(char *current)
 		return (ERROR_NEAR_PIPE);
 	while (*current != '\0' && status == NULL)
 	{
-		if (is_protect(*current))
-			current = skip_protected(current);
+		if (cse_is_protect(*current))
+			current = cse_skip_protected(current);
 		if (is_semicolon(*current))
 			status = check_error_near(current + 1);
 		else if (is_pipe(*current))

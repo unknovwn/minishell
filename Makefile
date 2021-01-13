@@ -8,8 +8,8 @@ SOURCE_FILES = minishell.c \
 			   env_utils.c \
 			   print_error_and_exit.c \
 			   checkingSyntaxErrors/check_syntax_errors.c \
-			   checkingSyntaxErrors/semicolon_and_pipe.c \
-			   checkingSyntaxErrors/skipping.c
+			   checkingSyntaxErrors/skipping.c \
+			   checkingSyntaxErrors/utils.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################
