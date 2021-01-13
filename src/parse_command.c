@@ -12,6 +12,11 @@
 
 #include "minishell.h"
 
+int				ft_s_isspace(char *s)
+{
+	return (*s == ' ' || (*s >= 9 && *s <= 13));
+}
+
 t_command_tab	*parse_command(char *command)
 {
 	t_command_tab	*command_table;
@@ -30,8 +35,8 @@ t_command_tab	*parse_command(char *command)
 	}
 	commands = command_table->commands;
 	if (ft_strlen(command) == 0)
-		(commands[0]).argv = super_split("exit", ft_isspace);
+		(commands[0]).argv = super_split("exit", ft_s_isspace);
 	else
-		(commands[0]).argv = super_split(command, ft_isspace);
+		(commands[0]).argv = super_split(command, ft_s_isspace);
 	return (command_table);
 }

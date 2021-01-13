@@ -25,7 +25,7 @@ typedef struct		s_split_str
 {
 	char			*current;
 	char			*after_protecting;
-	int				(*delim_comparator)(int);
+	int				(*delim_comparator)(char*);
 }					t_split_str;
 
 /*
@@ -36,10 +36,11 @@ typedef struct		s_split_str
 
 void				init_str(t_split_str *str,
 							char *s,
-							int (*delim_comparator)(int));
+							int (*delim_comparator)(char*));
 
 int					is_end_or_sep(t_split_str *s);
 
+int					is_sep(t_split_str *s);
 void				skip_sep(t_split_str *s);
 char				*skip_protected(const char *s);
 void				skip_string(t_split_str *s);

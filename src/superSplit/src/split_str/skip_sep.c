@@ -14,9 +14,14 @@
 
 #include "split_str.h"
 
+int			is_sep(t_split_str *s)
+{
+	return (s->delim_comparator(s->current));
+}
+
 static int	is_sep_and_is_not_end(t_split_str *s)
 {
-	return (s->delim_comparator(*s->current) == true && *s->current != '\0');
+	return (is_sep(s) == true && *s->current != '\0');
 }
 
 void		skip_sep(t_split_str *s)

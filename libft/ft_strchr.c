@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_split_str.c                                   :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 03:18:28 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 03:18:29 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/13 19:09:36 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/13 19:16:31 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "split_str.h"
-
-void	init_str(t_split_str *str, char *s, int (*delim_comparator)(char*))
+char	*ft_strchr(const char *s, int c)
 {
-	str->current = s;
-	str->after_protecting = skip_protected(str->current);
-	str->delim_comparator = delim_comparator;
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char*)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char*)s);
+	return (0);
 }
