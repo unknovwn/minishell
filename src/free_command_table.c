@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:47:08 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/10 17:11:39 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 18:25:20 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	free_command_table(t_command_tab *command_table)
 	t_command	*commands;
 
 	commands = command_table->commands;
-	i = command_table->number_of_commands;
+	i = command_table->len;
 	while (i--)
 	{
 		free_string_arr(commands->argv);

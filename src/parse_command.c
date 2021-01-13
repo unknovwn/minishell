@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:56:39 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 16:05:46 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 18:25:39 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_command_tab	*parse_command(char *command)
 	/* 	return (0); */
 	if (!(command_table = (t_command_tab*)malloc(sizeof(t_command_tab))))
 		return (0);
-	command_table->number_of_commands = 1;
+	command_table->len = 1;
 	if (!(command_table->commands = (t_command*)malloc(sizeof(t_command)
-					* command_table->number_of_commands)))
+					* command_table->len)))
 	{
 		free(command_table);
 		return (0);
