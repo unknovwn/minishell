@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_one.h                                      :+:      :+:    :+:   */
+/*   semicolon_and_pipe.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 19:50:47 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/12 19:50:51 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/11 18:55:38 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/11 18:55:39 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_ONE
-# define EXECUTE_ONE
+#ifndef UTILS_H
+# define UTILS_H
 
-void	execute_one(char *command);
+int		is_pipe(int c);
 
 #endif
