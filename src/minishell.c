@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 20:17:07 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 20:40:43 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		parse_env_var(char *var)
 		clear_env();
 		print_error_and_exit("error: invalid program environment");
 	}
+	*equals_sign = '\0';
 	name = var;
 	value = (equals_sign + 1);
 	if ((add_env_var(name, value)) == -1)
@@ -39,7 +40,7 @@ void		parse_env_var(char *var)
 	}
 }
 
-t_list		*init_env(char **envp)
+t_list		*init_env(void)
 {
 	t_env_variable	*last_return_value;
 	t_list			*env;
@@ -51,8 +52,6 @@ t_list		*init_env(char **envp)
 		delete_env_var(last_return_value);
 		print_error_and_exit(strerror(errno));
 	}
-	while (*envp)
-		parse_env_var(*envp++);
 	return (env);
 }
 
@@ -84,7 +83,9 @@ int			main(int argc, char **argv, char **envp)
 		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGINT\n", SHELL_NAME);
 	if ((signal(SIGQUIT, SIG_IGN)) == SIG_ERR)
 		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGQUIT\n", SHELL_NAME);
-	g_env = init_env(envp);
+	g_env = init_env();
+	while (*envp)
+		parse_env_var(*envp++);
 	/* print_env(); */
 	while (1)
 	{

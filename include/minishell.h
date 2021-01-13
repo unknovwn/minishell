@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 20:23:45 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 20:25:44 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			delete_env_var(void *env_var);
 void			clear_env(void);
 char			*get_env_value(char *name);
 t_env_variable	*create_env_var(char *name, char *value);
-void			add_env_var(char *name, char *value);
+int				add_env_var(char *name, char *value);
 char			*insert_env_variables(char *command);
 void			print_error_and_exit(char *error_string);
 
