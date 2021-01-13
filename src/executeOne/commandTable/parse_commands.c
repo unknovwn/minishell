@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon_and_pipe.h                               :+:      :+:    :+:   */
+/*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 18:55:38 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/11 18:55:39 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/13 23:22:37 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/13 23:22:38 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "command_table.h"
 
-int		is_pipe(int c);
+int	parse_commands(t_command_tab *command_tab)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	return (0);
+}

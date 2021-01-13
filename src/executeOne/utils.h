@@ -14,5 +14,6 @@
 # define UTILS_H
 
 int		is_pipe(int c);
+int		is_redirect(char c);
 
 #endif

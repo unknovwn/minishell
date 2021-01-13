@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mutant_split.h                                     :+:      :+:    :+:   */
+/*   execute_one.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 15:03:32 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 05:28:09 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/12 19:50:47 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/12 19:50:51 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SUPER_SPLIT_H
-# define SUPER_SPLIT_H
+#ifndef EXECUTE_ONE
+# define EXECUTE_ONE
 
-# include <stdint.h>
-# include <stdlib.h>
-
-char		**super_split(const char *s, int (*delim_comparator)(int));
+int	execute_one(char *command);
 
 #endif

@@ -13,6 +13,8 @@
 #ifndef COMMAND_TABLE_H
 # define COMMAND_TABLE_H
 
+# include <stdlib.h>
+
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
@@ -29,5 +31,7 @@ typedef struct	s_command_tab {
 }				t_command_tab;
 
 t_command_tab	*init_default(char *commands);
+int				set_redirect_command_to_command(t_command_tab *command_tab);
+int				parse_commands(t_command_tab *command_tab);
 
 #endif
