@@ -38,6 +38,8 @@ size_t			count_strs(char **commands);
 
 int				set_redirect_between_commands(t_command_tab *tab);
 int				commands_to_command_tab(t_command_tab *tab, char **commands);
+int				set_argv(t_command *cells, char *command);
+int				set_redirect_from(t_command *cell, char *command);
 
 int				is_redirect_from(char *s);
 int				is_redirect_to(char *s);

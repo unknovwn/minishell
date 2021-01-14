@@ -3,8 +3,8 @@
 make -C ../../superSplit/
 make -C ../../../libft/
 
-#gcc -fsanitize=address\
-gcc\
+#gcc\
+gcc -fsanitize=address\
 	../../../libft/libft.a\
 	../../superSplit/super_split.a\
 	../../checkingSyntaxErrors/*.c\

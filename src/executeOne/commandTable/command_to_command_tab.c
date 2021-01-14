@@ -18,27 +18,13 @@
 #include "../skipping.h"
 #include "../files/files.h"
 
-int	set_argv(char *command, t_command *command_info)
+int	set_argv(t_command *cell, char *command)
 {
-	command_info->argv = super_split(command, ft_s_isspace);
-	if (command_info->argv == NULL)
+	cell->argv = super_split(command, ft_s_isspace);
+	if (cell->argv == NULL)
 		return (-1);
 	else
 		return (0);
-}
-
-int	set_redirect_from(char *command, t_command *command_info)
-{
-	char	**command_and_files;
-	size_t	len;
-	int		*files;
-
-	return (0);
-}
-
-int	is_s_redirect(char *s)
-{
-	return (*s == '>' || *s == '<' || ft_strcmp(s, ">>") == 0);
 }
 
 int	commands_to_command_tab(t_command_tab *tab, char **commands)
@@ -50,7 +36,7 @@ int	commands_to_command_tab(t_command_tab *tab, char **commands)
 	i = 0;
 	while (i < tab->len)
 	{
-		if (set_redirect_from(commands[i], &(cells[i])) != 0)
+		if (set_redirect_from(&(cells[i]), commands[i]) != 0)
 			return (-1);
 		i += 1;
 	}
