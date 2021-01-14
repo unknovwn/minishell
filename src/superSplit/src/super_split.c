@@ -35,7 +35,7 @@ static void		free_strings(t_arr_strings *strings)
 ** Split that supports quotes escape charactes (" ", ' ' and backslash).
 */
 
-char			**super_split(const char *s, int (*delim_comparator)(int))
+char			**super_split(const char *s, int (*delim_comparator)(char*))
 {
 	t_arr_strings	strings;
 	t_split_str		str;

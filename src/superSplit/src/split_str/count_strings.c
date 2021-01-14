@@ -21,7 +21,7 @@ size_t		count_strings(t_split_str s)
 	word_count = 0;
 	while (*s.current != '\0')
 	{
-		if (s.delim_comparator(*s.current) == false)
+		if (is_sep(&s) == false)
 		{
 			word_count += 1;
 			skip_string(&s);
