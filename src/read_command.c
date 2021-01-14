@@ -6,16 +6,16 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 19:59:52 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 18:55:04 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 262144
 
 /* Backspace special characters from terminal */
-void			handle_signal(int sig)
+void	handle_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -26,7 +26,7 @@ void			handle_signal(int sig)
 		ft_putstr("\b\b  \b\b", STDOUT);
 }
 
-int				has_not_closed_pipe(char *command, size_t command_len)
+int		has_not_closed_pipe(char *command, size_t command_len)
 {
 	char	*command_end;
 	size_t	backslash_counter;
@@ -48,7 +48,7 @@ int				has_not_closed_pipe(char *command, size_t command_len)
 	return (backslash_counter % 2 == 0);
 }
 
-int				ends_with_backslash_newline(char *command, size_t command_len)
+int		ends_with_backslash_newline(char *command, size_t command_len)
 {
 	char	*command_end;
 	size_t	backslash_counter;
@@ -68,7 +68,7 @@ int				ends_with_backslash_newline(char *command, size_t command_len)
 	return (backslash_counter % 2 != 0);
 }
 
-t_command_tab	*read_command(void)
+char	*read_command(void)
 {
 	int		count;
 	char	command[BUFFER_SIZE];
@@ -78,9 +78,9 @@ t_command_tab	*read_command(void)
 	int		remaining_command_space;
 	char	*syntax_error;
 
-	if ((signal(SIGINT, SIG_IGN)) == SIG_ERR)
+	if ((signal(SIGINT, handle_signal)) == SIG_ERR)
 		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGINT\n", SHELL_NAME);
-	if ((signal(SIGQUIT, SIG_IGN)) == SIG_ERR)
+	if ((signal(SIGQUIT, handle_signal)) == SIG_ERR)
 		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGQUIT\n", SHELL_NAME);
 	command_len = 0;
 	ctrld_flag = 1;
@@ -107,7 +107,7 @@ t_command_tab	*read_command(void)
 			ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, syntax_error);
 			exit(0);
 		}
-		if ((has_not_closed_pipe(command, command_len)))
+		if (has_not_closed_pipe(command, command_len))
 		{
 			ft_putstr("> ", STDOUT);
 			ctrld_flag = 1;
@@ -120,5 +120,5 @@ t_command_tab	*read_command(void)
 			ctrld_flag = 1;
 		}
 	}
-	return (parse_command(command));
+	return (insert_env_variables(command));
 }

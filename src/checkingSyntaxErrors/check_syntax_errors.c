@@ -55,19 +55,19 @@ static char	*check_near_unexpected_token(char *current)
 
 	status = NULL;
 	current = skip_space(current);
-	if (is_semicolon(*current))
+	if (is_semicolon(current))
 		return (ERROR_NEAR_SEMICOLON);
-	else if (is_pipe(*current))
+	else if (is_pipe(current))
 		return (ERROR_NEAR_PIPE);
 	while (*current != '\0' && status == NULL)
 	{
 		if (cse_is_protect(*current))
 			current = cse_skip_protected(current);
-		if (is_semicolon(*current))
+		if (is_semicolon(current))
 			status = check_error_near(current + 1);
-		else if (is_pipe(*current))
+		else if (is_pipe(current))
 			status = check_error_near(current + 1);
-		else if (is_redirect(*current))
+		else if (is_redirect(current))
 			status = check_error_near_with_redirect_to(current + 1);
 		current += 1;
 	}

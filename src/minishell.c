@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 20:40:43 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 18:53:46 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,11 @@ t_list		*init_env(void)
 	return (env);
 }
 
-void		print_env(void)
-{
-	t_list *env;
-	char *name;
-	char *value;
-
-	env = g_env;
-	while (env)
-	{
-		name = ((t_env_variable*)(env->content))->name;
-		value = ((t_env_variable*)(env->content))->value;
-		ft_fprintf(STDOUT, "%s=%s\n", name, value);
-		env = env->next;
-	}
-}
-
 int			main(int argc, char **argv, char **envp)
 {
-	t_command_tab	*command_table;
 	int				pid;
 	int				status;
+	char			*command;
 
 	(void)argc;
 	(void)argv;
@@ -86,7 +70,6 @@ int			main(int argc, char **argv, char **envp)
 	g_env = init_env();
 	while (*envp)
 		parse_env_var(*envp++);
-	/* print_env(); */
 	while (1)
 	{
 		if ((pid = fork()) == -1)
@@ -96,14 +79,9 @@ int			main(int argc, char **argv, char **envp)
 		}
 		if (pid == 0)
 		{
-			if (!(command_table = read_command()))
-			{
-				if (errno)
-					print_error_and_exit(strerror(errno));
-				exit(1);
-			}
-			execute_command(command_table);
-			free_command_table(command_table);
+			if (!(command = read_command()))
+				print_error_and_exit(strerror(errno));
+			execute_command(command);
 			exit(0);
 		}
 		if ((waitpid(pid, &status, 0)) == -1)
@@ -111,11 +89,8 @@ int			main(int argc, char **argv, char **envp)
 			clear_env();
 			print_error_and_exit(strerror(errno));
 		}
-		else
-		{
-			if (WEXITSTATUS(status) == MINISHELL_EXIT)
-				break ;
-		}
+		if (WEXITSTATUS(status) == MINISHELL_EXIT)
+			break ;
 	}
 	clear_env();
 	return (0);

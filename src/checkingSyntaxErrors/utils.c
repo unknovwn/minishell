@@ -14,20 +14,26 @@
 
 #include "check_syntax_errors.h"
 #include "skipping.h"
+#include "libft.h"
 
-int		is_semicolon(char c)
+int		is_semicolon(char *s)
 {
-	return (c == ';');
+	return (*s == ';');
 }
 
-int		is_pipe(char c)
+int		is_pipe(char *s)
 {
-	return (c == '|');
+	return (*s == '|');
 }
 
-int		is_redirect(char c)
+int		is_redirect(char *s)
 {
-	return (c == '>' || c == '<');
+	if (*s == '>' || *s == '<')
+		return (1);
+	else if (ft_strcmp(s, ">>") == 0)
+		return (2);
+	else
+		return (0);
 }
 
 char	*check_error_near(char *current)
