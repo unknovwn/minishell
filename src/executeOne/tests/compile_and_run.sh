@@ -9,5 +9,6 @@ gcc\
 	../../superSplit/super_split.a\
 	../../checkingSyntaxErrors/*.c\
 	../commandTable/*.c\
+	../files/*.c\
 	main.c ../*.c -o executeOne &&\
-	./executeOne "command 1 | command 2 | command 3"
+	./executeOne "command 1 < file | command 2 < file | command 3 4 5"

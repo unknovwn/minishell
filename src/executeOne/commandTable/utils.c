@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_redirect_command_to_command.c                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 22:03:35 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/13 22:03:36 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/14 13:39:17 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/14 13:39:18 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "../libft.h"
 
-#include "command_table.h"
-
-int	set_redirect_command_to_command(t_command_tab *command_tab)
+int	is_redirect_from(char *s)
 {
-	t_command	*commands;
-	int			new_in_out[2];
-	size_t		i;
+	return (*s == '<');
+}
 
-	commands = command_tab->commands;
-	i = 0;
-	while (i < command_tab->len - 1)
-	{
-		if (pipe(new_in_out) < 0)
-			return (-1);
-		commands[i].out = new_in_out[1];
-		commands[i + 1].in = new_in_out[0];
-		i += 1;
-	}
-	return (0);
+int	is_redirect_to(char *s)
+{
+	return (*s == '>');
+}
+
+int	is_redirect_double_to(char *s)
+{
+	return (ft_strcmp(s, ">>"));
 }

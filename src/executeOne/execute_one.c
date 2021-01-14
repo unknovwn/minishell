@@ -17,27 +17,34 @@
 
 static void	print_command_tab(t_command_tab *command_tab)
 {
-	t_command	*commands;
+	t_command	*cells;
 	size_t		i;
 
-	commands = command_tab->commands;
+	cells = command_tab->cells;
 	i = 0;
 	while (i < command_tab->len)
 	{
 		printf("command #%zu:\n", i);
-		if (commands->argv == NULL)
+		if (cells[i].argv == NULL)
 			printf("argv: NULL\n");
-		printf("in = |%d|\n", commands[i].in);
-		printf("out = |%d|\n", commands[i].out);
+		else
+		{
+			for(int j = 0; cells[i].argv[j] != NULL; j += 1)
+			{
+				printf("argv[%d]: |%s|\n", j, cells[i].argv[j]);
+			}
+		}
+		printf("in = |%d|\n", cells[i].in);
+		printf("out = |%d|\n", cells[i].out);
 		printf("=============\n");
 		i += 1;
 	}
 }
 
-static void		free_all(t_command_tab *command_tab, char **strs)
+static void		free_all(t_command_tab *tab, char **strs)
 {
 	free_string_arr(strs);
-	free_command_tab(&command_tab);
+	del_command_tab(&tab);
 }
 
 int				is_s_pipe(char *s)
@@ -47,34 +54,33 @@ int				is_s_pipe(char *s)
 
 int	execute_one(char *command)
 {
-	t_command_tab	*command_tab;
-	char			**commands_by_pipe;
+	t_command_tab	*tab;
+	char			**by_pipe;
 
-	commands_by_pipe = super_split(command, is_s_pipe);
-	if (commands_by_pipe == NULL)
-		return (-1);
-	if ((command_tab = init_default(commands_by_pipe)) == NULL)
+	if ((tab = init_command_tab()) == NULL)
+			return (-1);
+	if ((by_pipe = super_split(command, is_s_pipe)) == NULL)
 	{
-		free_string_arr(commands_by_pipe);
+		del_command_tab(&tab);
 		return (-1);
 	}
-	if (set_redirect_command_to_command(command_tab) != 0)
+	if (init_default(tab, by_pipe) != 0)
 	{
-		free_all(command_tab, commands_by_pipe);
+		free_all(tab, by_pipe);
 		return (-1);
 	}
-	/*
-	if (commands_to_command_tab(command_tab) != 0)
+	if (set_redirect_between_commands(tab) != 0)
 	{
-		free_all(command_tab, commands_by_pipe);
+		free_all(tab, by_pipe);
 		return (-1);
 	}
-	*/
-
-	print_command_tab(command_tab);
-
-	/* execute_commands(command_tab); */
-
-	free_all(command_tab, commands_by_pipe);
+	if (commands_to_command_tab(tab, by_pipe) != 0)
+	{
+		free_all(tab, by_pipe);
+		return (-1);
+	}
+	print_command_tab(tab);
+	free_all(tab, by_pipe);
+	//sleep(30);
 	return (0);
 }
