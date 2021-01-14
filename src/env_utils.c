@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 20:33:03 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 13:24:23 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			remove_var_from_env(char *name)
 	}
 }
 
-char			*get_env_value(char *name)
+char			*get_var_value(char *name)
 {
 	t_list	*g_env_p;
 
@@ -56,24 +56,24 @@ char			*get_env_value(char *name)
 t_env_variable	*create_env_var(char *name, char *value)
 {
 	t_env_variable	*env_var;
-	char			*env_name;
-	char			*env_value;
+	char			*var_name;
+	char			*var_value;
 
-	if (!(env_name = ft_strdup(name)))
+	if (!(var_name = ft_strdup(name)))
 		return (0);
-	if (!(env_value = ft_strdup(value)))
+	if (!(var_value = ft_strdup(value)))
 	{
-		free(env_name);
+		free(var_name);
 		return (0);
 	}
 	if (!(env_var = (t_env_variable *)malloc(sizeof(t_env_variable))))
 	{
-		free(env_name);
-		free(env_value);
+		free(var_name);
+		free(var_value);
 		return (0);
 	}
-	env_var->name = env_name;
-	env_var->value = env_value;
+	env_var->name = var_name;
+	env_var->value = var_value;
 	return (env_var);
 }
 
