@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 19:14:16 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 15:02:52 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 		void (*del)(void *));
 int					ft_isspace(int c);
+int					ft_s_isspace(char *s);
+int					ft_isdigit(int c);
+int					ft_isalpha(int c);
 size_t				ft_strlen(const char *str);
 void				ft_putstr(char *str, int fd);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -40,5 +43,7 @@ char				*ft_remove_chars(char *str, int (*char_comparator)(int));
 char				*ft_uitoa(unsigned int n);
 char				*ft_strdup(const char *str);
 char				*ft_strchr(const char *s, char c);
+char				*ft_strcpy(char *dst, const char *src);
+char				*ft_strcat(char *s1, const char *s2);
 
 #endif

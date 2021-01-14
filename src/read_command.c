@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 16:47:50 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 19:59:52 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ t_command_tab	*read_command(void)
 	int		remaining_command_space;
 	char	*syntax_error;
 
-	if ((signal(SIGINT, handle_signal)) == SIG_ERR)
-		ft_putstr("\nCannot catch SIGINT\n", STDERR);
-	if ((signal(SIGQUIT, handle_signal)) == SIG_ERR)
-		ft_putstr("\nCannot catch SIGQUIT\n", STDERR);
+	if ((signal(SIGINT, SIG_IGN)) == SIG_ERR)
+		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGINT\n", SHELL_NAME);
+	if ((signal(SIGQUIT, SIG_IGN)) == SIG_ERR)
+		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGQUIT\n", SHELL_NAME);
 	command_len = 0;
 	ctrld_flag = 1;
 	ft_putstr(PROMPT_STRING, STDOUT);

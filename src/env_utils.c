@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 13:23:10 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/13 20:33:03 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,22 @@ void			delete_env_var(void *env_var)
 	free(env_var_p);
 }
 
-void			clear_env()
+void			remove_var_from_env(char *name)
 {
-	ft_lstclear(&g_env, delete_env_var);
+	t_list	*prev;
+	t_list	*curr;
+
+	prev = g_env;
+	while ((curr = prev->next))
+	{
+		if ((ft_strcmp(((t_env_variable*)(curr->content))->name, name)) == 0)
+		{
+			prev->next = curr->next;
+			ft_lstdelone(curr, delete_env_var);
+		}
+		prev = curr;
+		curr = curr->next;
+	}
 }
 
 char			*get_env_value(char *name)
@@ -64,7 +77,7 @@ t_env_variable	*create_env_var(char *name, char *value)
 	return (env_var);
 }
 
-void		add_env_var(char *name, char *value)
+int				add_env_var(char *name, char *value)
 {
 	t_list			*list_elem;
 	t_env_variable	*env_var;
@@ -72,13 +85,14 @@ void		add_env_var(char *name, char *value)
 	if (!(env_var = create_env_var(name, value)))
 	{
 		ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
-		return ;
+		return (-1);
 	}
 	if (!(list_elem = ft_lstnew(env_var)))
 	{
 		delete_env_var(env_var);
 		ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
-		return ;
+		return (-1);
 	}
 	ft_lstadd_back(&g_env, list_elem);
+	return (0);
 }

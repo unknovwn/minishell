@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_and_exit.c                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:44:59 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 20:01:46 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/14 14:52:25 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/14 15:03:57 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-void	print_error_and_exit(char *error_string)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, error_string);
-	exit(1);
+	int i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

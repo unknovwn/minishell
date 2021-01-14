@@ -15,7 +15,12 @@ SRC = free_string_arr.c \
 	  ft_remove_chars.c \
 	  ft_uitoa.c \
 	  ft_strdup.c \
-	  ft_strchr.c
+	  ft_strchr.c \
+	  ft_isdigit.c \
+	  ft_isalpha.c \
+	  ft_s_isspace.c \
+	  ft_strcat.c \
+	  ft_strcpy.c
 
 OBJ = $(SRC:.c=.o)
 
