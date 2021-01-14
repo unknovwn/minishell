@@ -28,7 +28,7 @@ void		skip_sep(t_split_str *s)
 {
 	while (is_sep_and_is_not_end(s))
 	{
-		s->current += 1;
+		s->current += s->delim_comparator(s->current);
 	}
 	s->after_protecting = skip_protected(s->current);
 }
