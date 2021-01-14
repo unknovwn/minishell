@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 15:02:52 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 15:34:01 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ char				*ft_uitoa(unsigned int n);
 char				*ft_strdup(const char *str);
 char				*ft_strchr(const char *s, char c);
 char				*ft_strcpy(char *dst, const char *src);
-char				*ft_strcat(char *s1, const char *s2);
+char				*ft_strncat(char *s1, const char *s2, size_t len);
 
 #endif
