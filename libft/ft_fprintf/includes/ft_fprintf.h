@@ -6,12 +6,12 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:40:00 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/09 23:18:21 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 22:26:15 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_FPRINTF_H
+# define FT_FPRINTF_H
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdint.h>
