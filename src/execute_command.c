@@ -6,39 +6,53 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 19:05:55 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 13:58:48 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_macro.h"
+#include "super_split.h"
+#include "print_error.h"
+#include "libft.h"
+#include <sys/errno.h>
+#include <string.h>
+
+int		iss_semicolon(char *c)
+{
+	return (*c == ';');
+}
 
 void	execute_command(char *command)
 {
-	/* char	**commands; */
+	char	**commands;
+	int		i;
 
 	if (ft_strlen(command) == 0 || ft_strcmp(command, "exit\n") == 0)
 	{
-		/* free_command_table(command_table); */
 		free(command);
 		ft_putstr("exit\n", STDOUT);
 		exit(MINISHELL_EXIT);
 	}
 	command[ft_strlen(command) - 1] = '\0';
-	ft_fprintf(STDOUT, "\"%s\" executed\n", command);
-	/* if (!(commands = super_split(command, is_semicolon))) */
-	/* { */
-	/* 	free(command); */
-	/* 	print_error_and_exit(strerror(errno)); */
-	/* } */
-	/* while (*commands) */
-	/* { */
-	/* 	if ((execute_one(*commands)) == -1) */
-	/* 	{ */
-	/* 		if (errno) */
-	/* 			ft_fprintf(STDOUT, "%s: %s\n", SHELL_NAME, strerror(errno)) */
-	/* 	} */
-	/* 	commands++; */
-	/* } */
-	/* free_string_arr(commands); */
+	if (!(commands = super_split(command, iss_semicolon)))
+	{
+		free(command);
+		print_error_and_exit(strerror(errno));
+	}
+	ft_putstr("\"", STDOUT);
+	i = 0;
+	while (commands[i])
+	{
+		/* if ((execute_one(*commands)) == -1) */
+		/* { */
+		/* 	if (errno) */
+		/* 		ft_fprintf(STDOUT, "%s: %s\n", SHELL_NAME, strerror(errno)) */
+		/* } */
+		ft_fprintf(STDOUT, "%s", commands[i]);
+		if (commands[++i])
+			ft_putstr(";", STDOUT);
+	}
+	ft_putstr("\"\n", STDOUT);
+	free_string_arr(commands);
 	free(command);
 }

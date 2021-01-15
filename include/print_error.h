@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_command_table.c                               :+:      :+:    :+:   */
+/*   print_error.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 17:47:08 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 18:25:20 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/14 20:32:01 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 14:11:04 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef PRINT_ERROR_H
+# define PRINT_ERROR_H
 
-void	free_command_table(t_command_tab *command_table)
-{
-	int			i;
-	t_command	*commands;
+void	print_error_and_exit(char *error_string);
 
-	commands = command_table->commands;
-	i = command_table->len;
-	while (i--)
-	{
-		free_string_arr(commands->argv);
-		commands++;
-	}
-	free(command_table->commands);
-	free(command_table);
-}
+#endif

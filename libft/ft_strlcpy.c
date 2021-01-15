@@ -6,17 +6,19 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 20:24:48 by mgeneviv          #+#    #+#             */
-/*   Updated: 2020/11/01 13:46:56 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 23:05:42 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t			ft_strlcpy(char *dst, const char *src, int dstsize)
 {
 	size_t	src_strlen;
 
+	if (dstsize < 0)
+		dstsize = 0;
 	if (!dst || !src)
 		return (0);
 	src_strlen = ft_strlen(src);

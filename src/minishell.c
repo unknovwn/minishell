@@ -6,61 +6,57 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 18:53:46 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 22:36:40 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "minishell_macro.h"
+#include "env_utils.h"
+#include "libft.h"
+#include "print_error.h"
+#include <sys/errno.h>
+#include <string.h>
+#include <signal.h>
 
 t_list		*g_env;
 
-void		clear_env(void)
+void		read_and_execute(void)
 {
-	ft_lstclear(&g_env, delete_env_var);
+	char			*command;
+
+	if (!(command = read_command()))
+		print_error_and_exit(strerror(errno));
+	execute_command(command);
+	exit(0);
 }
 
-void		parse_env_var(char *var)
+void		repl(void)
 {
-	char	*equals_sign;
-	char	*name;
-	char	*value;
+	int				pid;
+	int				status;
 
-	if (!(equals_sign = ft_strchr(var, '=')))
+	while (1)
 	{
-		clear_env();
-		print_error_and_exit("error: invalid program environment");
+		if ((pid = fork()) == -1)
+		{
+			clear_env();
+			print_error_and_exit(strerror(errno));
+		}
+		if (pid == 0)
+			read_and_execute();
+		if ((waitpid(pid, &status, 0)) == -1)
+		{
+			clear_env();
+			print_error_and_exit(strerror(errno));
+		}
+		if (WEXITSTATUS(status) == MINISHELL_EXIT)
+			break ;
 	}
-	*equals_sign = '\0';
-	name = var;
-	value = (equals_sign + 1);
-	if ((add_env_var(name, value)) == -1)
-	{
-		clear_env();
-		print_error_and_exit(strerror(errno));
-	}
-}
-
-t_list		*init_env(void)
-{
-	t_env_variable	*last_return_value;
-	t_list			*env;
-
-	if (!(last_return_value = create_env_var("?", "0")))
-		print_error_and_exit(strerror(errno));
-	if (!(env = ft_lstnew(last_return_value)))
-	{
-		delete_env_var(last_return_value);
-		print_error_and_exit(strerror(errno));
-	}
-	return (env);
 }
 
 int			main(int argc, char **argv, char **envp)
 {
-	int				pid;
-	int				status;
-	char			*command;
-
 	(void)argc;
 	(void)argv;
 	if ((signal(SIGINT, SIG_IGN)) == SIG_ERR)
@@ -70,28 +66,7 @@ int			main(int argc, char **argv, char **envp)
 	g_env = init_env();
 	while (*envp)
 		parse_env_var(*envp++);
-	while (1)
-	{
-		if ((pid = fork()) == -1)
-		{
-			clear_env();
-			print_error_and_exit(strerror(errno));
-		}
-		if (pid == 0)
-		{
-			if (!(command = read_command()))
-				print_error_and_exit(strerror(errno));
-			execute_command(command);
-			exit(0);
-		}
-		if ((waitpid(pid, &status, 0)) == -1)
-		{
-			clear_env();
-			print_error_and_exit(strerror(errno));
-		}
-		if (WEXITSTATUS(status) == MINISHELL_EXIT)
-			break ;
-	}
+	repl();
 	clear_env();
 	return (0);
 }
