@@ -1,5 +1,4 @@
 NAME = minishell
-SHELL = /bin/zsh
 
 SOURCE_FILES = minishell.c \
 			   read_command.c \
@@ -72,6 +71,7 @@ re:	fclean	all
 
 ###############################  BONUS COMMANDS  ##############################
 
+SHELL = /bin/zsh
 norm:
 	norminette -R CheckForbiddenSourceHeader **/*.c
 	norminette -R CheckForbiddenSourceHeader **/*.h
