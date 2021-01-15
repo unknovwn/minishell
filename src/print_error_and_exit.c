@@ -6,11 +6,12 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:44:59 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 20:01:46 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 20:39:57 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_macro.h"
+#include "libft.h"
 
 void	print_error_and_exit(char *error_string)
 {

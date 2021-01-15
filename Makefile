@@ -1,11 +1,12 @@
 NAME = minishell
 
 SOURCE_FILES = minishell.c \
-			   free_command_table.c \
 			   read_command.c \
 			   execute_command.c \
 			   env_utils.c \
+			   env_utils2.c \
 			   insert_env_variables.c \
+			   insert_env_variables_utils.c \
 			   print_error_and_exit.c \
 			   checkingSyntaxErrors/check_syntax_errors.c \
 			   checkingSyntaxErrors/skipping.c \
@@ -44,6 +45,8 @@ $(NAME): $(OBJ)
 all: $(NAME)
 
 debug: $(OBJ)
+	make -C $(LIBFT_DIR)
+	make -C $(SUPER_SPLIT_DIR)
 	$(CC) $(CFLAGS) $(SEGINFOFLAG) $(LIBS) $(OBJ) -o $(NAME)
 
 clean:

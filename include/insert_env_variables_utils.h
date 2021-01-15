@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_string_arr.c                                  :+:      :+:    :+:   */
+/*   insert_env_variables_utils.h                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 18:53:50 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 13:50:12 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/15 14:05:10 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 14:10:25 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef INSERT_ENV_VARIABLES_UTILS_H
+# define INSERT_ENV_VARIABLES_UTILS_H
 
-void	free_string_arr(void *arr)
-{
-	char	**string_arr;
-	int		i;
+# include <libft.h>
 
-	if (arr == NULL)
-		return ;
-	string_arr = (char**)arr;
-	i = 0;
-	while (string_arr[i])
-		free(string_arr[i++]);
-	free(string_arr);
-}
+int		is_in_single_quotes(char *str, int index);
+int		is_env_var(char *command, int index);
+char	*get_var_name(char *str);
+size_t	count_result_len(char *command);
+int		iterate_loop(char *result, char *command, int i);
+
+#endif

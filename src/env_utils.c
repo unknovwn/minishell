@@ -6,15 +6,19 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 13:24:23 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/14 20:48:41 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "env_utils.h"
+#include "minishell_macro.h"
+#include <sys/errno.h>
+#include <string.h>
 
 void			delete_env_var(void *env_var)
 {
 	t_env_variable	*env_var_p;
+
 	env_var_p = (t_env_variable*)env_var;
 	free(env_var_p->name);
 	free(env_var_p->value);

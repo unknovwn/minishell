@@ -6,12 +6,13 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 15:34:01 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 13:50:09 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -36,7 +37,7 @@ int					ft_isdigit(int c);
 int					ft_isalpha(int c);
 size_t				ft_strlen(const char *str);
 void				ft_putstr(char *str, int fd);
-size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t				ft_strlcpy(char *dst, const char *src, int dstsize);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_fprintf(int fd, const char *s, ...);
 char				*ft_remove_chars(char *str, int (*char_comparator)(int));

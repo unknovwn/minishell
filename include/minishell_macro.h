@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_string_arr.c                                  :+:      :+:    :+:   */
+/*   minishell_macro.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 18:53:50 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 13:50:12 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/14 20:18:43 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/14 20:19:10 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef MINISHELL_MACRO_H
+# define MINISHELL_MACRO_H
 
-void	free_string_arr(void *arr)
-{
-	char	**string_arr;
-	int		i;
+# define SHELL_NAME "minishell"
+# define PROMPT_STRING "minishell> "
 
-	if (arr == NULL)
-		return ;
-	string_arr = (char**)arr;
-	i = 0;
-	while (string_arr[i])
-		free(string_arr[i++]);
-	free(string_arr);
-}
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
+
+# define MINISHELL_EXIT 128
+
+#endif
