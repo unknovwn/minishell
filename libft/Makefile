@@ -20,7 +20,8 @@ SRC = free_string_arr.c \
 	  ft_isalpha.c \
 	  ft_s_isspace.c \
 	  ft_strncat.c \
-	  ft_strcpy.c
+	  ft_strcpy.c \
+	  ft_memcmp.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -46,5 +46,6 @@ char				*ft_strdup(const char *str);
 char				*ft_strchr(const char *s, char c);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncat(char *s1, const char *s2, size_t len);
+int					ft_memcmp(const void *s1, const void *s2, size_t n);
 
 #endif
