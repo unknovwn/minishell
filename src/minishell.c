@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 22:36:40 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 22:21:30 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <signal.h>
 
 t_list		*g_env;
+int			g_exit_code;
 
 void		read_and_execute(void)
 {
@@ -59,6 +60,7 @@ int			main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
+	g_exit_code = 0;
 	if ((signal(SIGINT, SIG_IGN)) == SIG_ERR)
 		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGINT\n", SHELL_NAME);
 	if ((signal(SIGQUIT, SIG_IGN)) == SIG_ERR)
@@ -68,5 +70,5 @@ int			main(int argc, char **argv, char **envp)
 		parse_env_var(*envp++);
 	repl();
 	clear_env();
-	return (0);
+	return (g_exit_code);
 }

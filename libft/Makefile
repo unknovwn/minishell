@@ -21,7 +21,10 @@ SRC = free_string_arr.c \
 	  ft_s_isspace.c \
 	  ft_strncat.c \
 	  ft_strcpy.c \
-	  ft_memcmp.c
+	  ft_memcmp.c \
+	  ft_atoi.c \
+	  ft_lstsize.c \
+	  ft_sort_string_arr.c
 
 OBJ = $(SRC:.c=.o)
 

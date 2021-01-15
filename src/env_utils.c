@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 20:48:41 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 22:18:12 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ t_env_variable	*create_env_var(char *name, char *value)
 
 	if (!(var_name = ft_strdup(name)))
 		return (0);
-	if (!(var_value = ft_strdup(value)))
+	if (!value)
+		var_value = 0;
+	else if (!(var_value = ft_strdup(value)))
 	{
 		free(var_name);
 		return (0);

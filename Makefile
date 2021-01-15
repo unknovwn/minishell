@@ -10,7 +10,13 @@ SOURCE_FILES = minishell.c \
 			   print_error_and_exit.c \
 			   checkingSyntaxErrors/check_syntax_errors.c \
 			   checkingSyntaxErrors/skipping.c \
-			   checkingSyntaxErrors/utils.c
+			   checkingSyntaxErrors/utils.c \
+			   builtins/cd.c \
+			   builtins/exit.c \
+			   builtins/pwd.c \
+			   builtins/env.c \
+			   builtins/export.c \
+			   builtins/unset.c
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 21:48:41 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/15 18:52:07 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 19:23:41 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "env_utils.h"
 
-char		*read_command(void);
-void		execute_command(char *command);
+int		cd_command(int argc, char **argv)
+{
+	char	*path;
 
-extern int	g_exit_code;
-
-#endif
+	path = argv[1];
+	if (argc == 1)
+		path = get_var_value("HOME");
+	return (chdir(path) == -1);
+}

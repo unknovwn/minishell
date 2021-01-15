@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 19:59:21 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 20:52:36 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:59:20 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				add_env_var(char *name, char *value);
 void			parse_env_var(char *var);
 t_list			*init_env(void);
 char			*insert_env_variables(char *command);
+int				is_valid_name(char *name);
 
 extern t_list	*g_env;
 

@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 21:48:41 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/15 19:36:37 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 19:39:44 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-char		*read_command(void);
-void		execute_command(char *command);
+size_t	ft_lstsize(t_list *lst)
+{
+	size_t	size;
 
-extern int	g_exit_code;
-
-#endif
+	size = 0;
+	while (lst)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
+}

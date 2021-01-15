@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:16:19 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 13:50:09 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 21:44:57 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ char				*ft_strchr(const char *s, char c);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncat(char *s1, const char *s2, size_t len);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
+int					ft_atoi(char *num);
+size_t				ft_lstsize(t_list *lst);
+char				**ft_sort_string_arr(char **arr);
 
 #endif
