@@ -27,4 +27,6 @@ void			del_files(t_files **files);
 int				open_files(t_files *files, char **names);
 void			del_fds(t_files *files);
 
+char		**take_file_names(char **by_from);
+
 #endif

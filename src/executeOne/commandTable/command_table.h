@@ -44,5 +44,6 @@ int				set_redirect_from(t_command *cell, char *command);
 int				is_redirect_from(char *s);
 int				is_redirect_to(char *s);
 int				is_redirect_double_to(char *s);
+int				is_redirect_or_space(char *s);
 
 #endif

@@ -11,4 +11,4 @@ gcc -fsanitize=address\
 	../commandTable/*.c\
 	../files/*.c\
 	main.c ../*.c -o executeOne &&\
-	./executeOne "command 1 < file | command 2 < file | command 3 4 5"
+	./executeOne "command 1 < file1 < file1.2 | command 2 < file2 | command 3 4 5"
