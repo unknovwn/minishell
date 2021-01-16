@@ -9,8 +9,8 @@ gcc\
 	../../superSplit/super_split.a\
 	../../checkingSyntaxErrors/*.c\
 	../commandTable/*.c\
-	../files/*.c\
 	main.c ../*.c -o executeOne &&\
+#	./executeOne "   < file"
 #	./executeOne "command  < file"
 #	./executeOne "command  < file >> dto_file"
 #	./executeOne "command 1 > to_file1 | command < to_file1"&&\

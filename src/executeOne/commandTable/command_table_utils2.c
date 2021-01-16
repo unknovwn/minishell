@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files.h                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 17:50:51 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/14 17:50:52 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/17 02:31:35 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/17 02:31:35 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILES_H
-# define FILES_H
+#include <stdlib.h>
 
-# include <stdlib.h>
+size_t	count_strs(char **strs)
+{
+	size_t	len;
 
-char		**take_file_names(char **by_from);
-
-#endif
+	len = 0;
+	while (*strs != NULL)
+	{
+		len += 1;
+		strs += 1;
+	}
+	return (len);
+}

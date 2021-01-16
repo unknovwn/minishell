@@ -17,13 +17,7 @@
 #include "../libft.h"
 #include "../utils.h"
 
-static void		free_all(t_command_tab *tab, char **strs)
-{
-	free_string_arr(strs);
-	del_command_tab(&tab);
-}
-
-static int		set_tab_by_pipe(t_command_tab *tab, char *command)
+static int		set_command_tab(t_command_tab *tab, char *command)
 {
 	char			**by_pipe;
 
@@ -54,7 +48,7 @@ t_command_tab	*parse_command(char *command)
 
 	if ((tab = init_command_tab()) == NULL)
 		return (NULL);
-	if (set_tab_by_pipe(tab, command) != 0)
+	if (set_command_tab(tab, command) != 0)
 	{
 		del_command_tab(&tab);
 		return (NULL);

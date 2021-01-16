@@ -22,7 +22,7 @@ int			set_redirect_double_to(t_command *cell, t_split_str s)
 
 	if ((file = copy_and_skip_string(&s)) == NULL)
 		return (-1);
-	if (cell->out != 1)
+	if (cell->out != STDOUT)
 	{
 		if (close(cell->out) < 0)
 		{
@@ -30,7 +30,8 @@ int			set_redirect_double_to(t_command *cell, t_split_str s)
 			return (-1);
 		}
 	}
-	if ((cell->out = open(file, O_CREAT | O_WRONLY | O_APPEND, S_IREAD | S_IWRITE)) < 0)
+	if ((cell->out = open(file, O_CREAT | O_WRONLY | O_APPEND,
+								S_IREAD | S_IWRITE)) < 0)
 	{
 		free(file);
 		return (-1);

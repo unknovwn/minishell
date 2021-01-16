@@ -9,6 +9,7 @@ SRC = $(addprefix src/, $(SOURCE_FILES))
 STRUCT_SPLIT_STR_FILES =	init_split_str.c \
 							skip_sep.c \
 							skip_string.c \
+							split_skip_space.c \
 							count_string_len.c \
 							count_strings.c \
 							copy_and_skip_string.c \

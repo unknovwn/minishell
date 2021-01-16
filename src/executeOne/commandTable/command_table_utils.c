@@ -37,7 +37,7 @@ int	is_redirect_double_to(char *s)
 		return (0);
 }
 
-int		is_redirect_or_space(char *s)
+int	is_redirect_or_space(char *s)
 {
 	if (*s == '<' || *s == '>')
 		return (1);

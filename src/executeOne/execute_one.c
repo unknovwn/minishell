@@ -46,12 +46,8 @@ int	execute_one(char *command)
 	char			**by_pipe;
 
 	if ((tab = parse_command(command)) == NULL)
-	{
-		write(1, "execute_one error\n", 18);
 		return (-1);
-	}
 	print_command_tab(tab);
 	del_command_tab(&tab);
-	sleep(30);
 	return (0);
 }

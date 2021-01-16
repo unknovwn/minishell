@@ -14,19 +14,6 @@
 
 #include "command_table.h"
 
-size_t			count_strs(char **strs)
-{
-	size_t	len;
-
-	len = 0;
-	while (*strs != NULL)
-	{
-		len += 1;
-		strs += 1;
-	}
-	return (len);
-}
-
 static void		set_defult(t_command_tab *command_tab)
 {
 	t_command	*cells;

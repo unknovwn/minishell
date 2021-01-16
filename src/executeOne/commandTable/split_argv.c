@@ -23,7 +23,7 @@ static size_t	count_args(char *command)
 	len = 0;
 	while (*s.current != '\0')
 	{
-		split_str_skip_space(&s);
+		split_skip_space(&s);
 		if (*s.current == '\0')
 			break ;
 		if (is_sep(&s))
@@ -53,7 +53,7 @@ char			**split_argv(char *command)
 	i = 0;
 	while (i < len)
 	{
-		split_str_skip_space(&s);
+		split_skip_space(&s);
 		if (is_sep(&s))
 		{
 			skip_sep(&s);

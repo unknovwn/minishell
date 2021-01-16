@@ -44,6 +44,7 @@ int					is_sep(t_split_str *s);
 void				skip_sep(t_split_str *s);
 char				*skip_protected(const char *s);
 void				skip_string(t_split_str *s);
+void				split_skip_space(t_split_str *s);
 
 size_t				count_string_len(t_split_str s);
 size_t				count_strings(t_split_str str);
@@ -52,13 +53,6 @@ char				*copy_and_skip_bslash_protecting(char *dst, t_split_str *s);
 char				*copy_and_skip_quotes_protecting(char *dst, t_split_str *s);
 char				*copy_and_skip_string(t_split_str *s);
 size_t				copy_strings(t_arr_strings *strings, t_split_str s);
-
-
-/*
-** New in HEADER
-*/
-
-void	split_str_skip_space(t_split_str *s);
 
 /*
 ** ==========================================================================
