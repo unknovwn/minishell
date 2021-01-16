@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:21:01 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/09 23:23:06 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 22:24:56 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	apply_zero_d(t_spec_info *lst)
 	lst->arg[0] = '-';
 	return ;
 }
- 
+
 /*
 **	The function 'take_arg_d' puts int argument
 **	to lst->arg with applying all needs flags

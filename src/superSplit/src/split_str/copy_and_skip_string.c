@@ -1,16 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_string.c                                      :+:      :+:    :+:   */
+/*   copy_and_skip_string.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 02:44:43 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 02:44:44 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/16 21:35:42 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdbool.h>
 
 #include "split_str.h"
 
@@ -37,7 +35,7 @@ static void	copy_string(char *dst, t_split_str s)
 	char	*dst_begin;
 
 	dst_begin = dst;
-	while (is_end_or_sep(&s) == false)
+	while (!(is_end_or_sep(&s)))
 	{
 		if (is_protect(*s.current))
 			dst = copy_and_skip_protected(dst, &s);

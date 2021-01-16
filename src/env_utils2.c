@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 20:01:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/14 21:26:52 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/15 22:18:53 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,21 @@ t_list		*init_env(void)
 		print_error_and_exit(strerror(errno));
 	}
 	return (env);
+}
+
+int			is_valid_name(char *name)
+{
+	int		i;
+
+	if (ft_isdigit(name[0]))
+		return (0);
+	i = 0;
+	while (name[i])
+	{
+		if (!(ft_isalpha(name[i])) && !(ft_isdigit(name[i]))
+				&& (name[i] != '_'))
+			return (0);
+		i++;
+	}
+	return (i != 0);
 }

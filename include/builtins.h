@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 21:48:41 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/15 21:46:32 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 21:51:32 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-char		*read_command(void);
-void		execute_command(char *command);
-
-extern int	g_exit_code;
+int	cd_command(int argc, char **argv);
+int	env_command(void);
+int	exit_command(int argc, char **argv);
+int	export_command(int argc, char **argv);
+int	pwd_command(void);
+int	unset_command(int argc, char **argv);
 
 #endif

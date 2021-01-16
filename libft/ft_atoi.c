@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_strings.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 15:24:19 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/16 21:34:58 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/15 18:00:31 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 18:07:27 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "split_str.h"
-
-size_t		count_strings(t_split_str s)
+int		ft_atoi(char *num)
 {
-	size_t		word_count;
+	int		result;
+	int		sign;
+	int		i;
 
-	word_count = 0;
-	while (*s.current != '\0')
+	i = 0;
+	if ((sign = (*num == '-')))
+		i++;
+	result = 0;
+	while (num[i])
 	{
-		if (!(is_sep(&s)))
-		{
-			word_count += 1;
-			skip_string(&s);
-		}
-		else
-			skip_sep(&s);
+		result *= 10;
+		result += (num[i++] - '0');
 	}
-	return (word_count);
+	if (sign)
+		result = -result;
+	return (result);
 }

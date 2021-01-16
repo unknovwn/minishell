@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_strings.c                                     :+:      :+:    :+:   */
+/*   echo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 00:59:51 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/16 21:35:24 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/09 21:01:45 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/09 21:01:46 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#ifndef ECHO_H
+# define ECHO_H
 
-#include "split_str.h"
+# include <stdint.h>
 
-size_t		copy_strings(t_arr_strings *strings, t_split_str s)
+typedef struct		s_printing
 {
-	size_t	i;
+	uint8_t			newline_flag;
+	char			*buff;
+}					t_printing;
 
-	i = 0;
-	while (i < strings->len)
-	{
-		skip_sep(&s);
-		strings->arr[i] = copy_and_skip_string(&s);
-		if (strings->arr[i] == NULL)
-			break ;
-		i += 1;
-	}
-	return (i);
-}
+char				*set_args_to_buff(int argc, char **args,
+										uint8_t newline_flag);
+
+#endif

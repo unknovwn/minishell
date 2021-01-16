@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_strings.c                                    :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 15:24:19 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/16 21:34:58 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/15 18:52:07 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/15 19:23:41 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "split_str.h"
+#include "env_utils.h"
 
-size_t		count_strings(t_split_str s)
+int		cd_command(int argc, char **argv)
 {
-	size_t		word_count;
+	char	*path;
 
-	word_count = 0;
-	while (*s.current != '\0')
-	{
-		if (!(is_sep(&s)))
-		{
-			word_count += 1;
-			skip_string(&s);
-		}
-		else
-			skip_sep(&s);
-	}
-	return (word_count);
+	path = argv[1];
+	if (argc == 1)
+		path = get_var_value("HOME");
+	return (chdir(path) == -1);
 }

@@ -6,11 +6,9 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 02:47:08 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 05:27:37 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/16 21:35:06 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdbool.h>
 
 #include "split_str.h"
 
@@ -46,12 +44,12 @@ char	*skip_protected(const char *s)
 
 int		is_end_or_sep(t_split_str *s)
 {
-	return (*s->current == '\0' || is_sep(s) == true);
+	return (*s->current == '\0' || is_sep(s));
 }
 
 void	skip_string(t_split_str *s)
 {
-	while (is_end_or_sep(s) == false)
+	while (!(is_end_or_sep(s)))
 	{
 		if (s->current != s->after_protecting)
 			s->current = s->after_protecting;
