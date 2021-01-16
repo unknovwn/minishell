@@ -3,12 +3,15 @@
 make -C ../../superSplit/
 make -C ../../../libft/
 
-#gcc\
-gcc -fsanitize=address\
+#gcc -fsanitize=address\
+gcc\
 	../../../libft/libft.a\
 	../../superSplit/super_split.a\
 	../../checkingSyntaxErrors/*.c\
 	../commandTable/*.c\
 	../files/*.c\
 	main.c ../*.c -o executeOne &&\
-	./executeOne "command 1 < file1 < file1.2 | command 2 < file2 | command 3 4 5"
+#	./executeOne "command  < file"
+#	./executeOne "command  < file >> dto_file"
+#	./executeOne "command 1 > to_file1 | command < to_file1"&&\
+	./executeOne "command 1 > to_file1 > to_file1.2 >> dto_file1 >> dto_file1.2 | command 2 3 < dto_file1 > to_file2 >> d_to_file2 7 8 9 | command 3 4 5"

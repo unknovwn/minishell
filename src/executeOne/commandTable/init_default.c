@@ -10,12 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <sys/errno.h>
+#include <stdlib.h>
 
 #include "command_table.h"
-#include "../super_split.h"
-#include "../libft.h"
 
 size_t			count_strs(char **strs)
 {

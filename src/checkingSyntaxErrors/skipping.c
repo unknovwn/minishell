@@ -14,7 +14,7 @@
 
 char	*skip_space(char *current)
 {
-	while (ft_isspace(*current))
+	while (ft_isspace(*current) && *current != '\0')
 		current += 1;
 	return (current);
 }

@@ -53,6 +53,13 @@ char				*copy_and_skip_quotes_protecting(char *dst, t_split_str *s);
 char				*copy_and_skip_string(t_split_str *s);
 size_t				copy_strings(t_arr_strings *strings, t_split_str s);
 
+
+/*
+** New in HEADER
+*/
+
+void	split_str_skip_space(t_split_str *s);
+
 /*
 ** ==========================================================================
 ** ==========================================================================

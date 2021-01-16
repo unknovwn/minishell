@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_redirect_command_to_command.c                  :+:      :+:    :+:   */
+/*   set_redirect_double_to.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 22:03:35 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/13 22:03:36 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/16 19:16:02 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/16 19:16:04 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <fcntl.h>
 
 #include "command_table.h"
+#include "../split_str.h"
 
-int	set_redirect_between_commands(t_command_tab *tab)
+int			set_redirect_double_to(t_command *cell, t_split_str s)
 {
-	t_command	*cells;
-	int			new_in_out[2];
-	size_t		i;
+	char	*file;
 
-	cells = tab->cells;
-	i = 0;
-	while (i < tab->len - 1)
+	if ((file = copy_and_skip_string(&s)) == NULL)
+		return (-1);
+	if (cell->out != 1)
 	{
-		if (pipe(new_in_out) < 0)
+		if (close(cell->out) < 0)
+		{
+			free(file);
 			return (-1);
-		cells[i].out = new_in_out[1];
-		cells[i + 1].in = new_in_out[0];
-		i += 1;
+		}
 	}
+	if ((cell->out = open(file, O_CREAT | O_WRONLY | O_APPEND, S_IREAD | S_IWRITE)) < 0)
+	{
+		free(file);
+		return (-1);
+	}
+	free(file);
 	return (0);
 }

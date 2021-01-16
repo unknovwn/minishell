@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_files.c                                       :+:      :+:    :+:   */
+/*   semicolon_and_pipe.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 17:55:37 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/14 17:55:39 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/11 18:55:38 by gdrive            #+#    #+#             */
+/*   Updated: 2021/01/11 18:55:39 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef UTILS_H
+# define UTILS_H
 
-#include "files.h"
+int		is_semicolon(char *s);
+int		is_pipe(char *s);
+int		is_redirect(char *s);
 
-void	del_files(t_files **files)
-{
-	if ((*files)->fds != NULL)
-		free((*files)->fds);
-	(*files)->fds = NULL;
-	free(*files);
-	*files = NULL;
-}
+char	*check_error_near(char *current);
+char	*check_error_near_with_redirect_to(char *current);
 
-t_files	*init_files(void)
-{
-	t_files	*files;
-
-	files = (t_files*)malloc(sizeof(t_files));
-	if (files == NULL)
-		return (NULL);
-	files->fds = NULL;
-	files->len = 0;
-	return (files);
-}
+#endif

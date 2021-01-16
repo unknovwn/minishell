@@ -10,43 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdbool.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 #include "command_table.h"
-#include "../super_split.h"
 #include "../split_str.h"
-#include "../libft.h"
-#include "../skipping.h"
-#include "../files/files.h"
 
-int		set_from(t_command *cell, char **by_from)
+int				set_redirect_from(t_command *cell, t_split_str s)
 {
-	char	**file_names;
+	char	*file;
 
-	if ((file_names = take_file_names(by_from + 1)) == NULL)
+	if ((file = copy_and_skip_string(&s)) == NULL)
 		return (-1);
-	free_string_arr(file_names);
-	return (0);
-}
-
-int		set_redirect_from(t_command *cell, char *command)
-{
-	char	**by_from;
-	size_t	len;
-
-	if ((by_from = (char**)super_split(command, is_redirect_from)) == NULL)
-		return (-1);
-	if ((len = count_strs(by_from)) == 1)
+	if (cell->in != 0)
 	{
-		free_string_arr(by_from);
-		return (0);
+		if (close(cell->in) < 0)
+		{
+			free(file);
+			return (-1);
+		}
 	}
-	else if (set_from(cell, by_from) != 0)
+	if ((cell->in = open(file, O_RDONLY)) < 0)
 	{
-		free_string_arr(by_from);
+		free(file);
 		return (-1);
 	}
-	free_string_arr(by_from);
+	free(file);
 	return (0);
 }
