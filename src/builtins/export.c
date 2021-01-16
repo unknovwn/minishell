@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:28:51 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 22:20:01 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/16 14:01:27 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		add_var(char *assignment)
 		value = (equals_sign + 1);
 	else
 		value = 0;
-	return (add_env_var(name, value));
+	return (set_new_value(name, value));
 }
 
 int		export_command(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 13:33:52 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/16 21:12:30 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,67 @@
 #include "check_syntax_errors.h"
 #include "print_error.h"
 #include <signal.h>
+#include <sys/errno.h>
+#include <string.h>
+#include <fcntl.h>
+#include "skipping.h"
 
 #define BUFFER_SIZE 262144
+
+size_t	g_command_len;
 
 void	handle_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_putstr("\b\b  \b\b\n", STDOUT);
-		exit(0);
+		ft_fprintf(STDOUT, "\b\b  \b\b\n%s", PROMPT_STRING);
+		g_command_len = 0;
 	}
 	if (sig == SIGQUIT)
 		ft_putstr("\b\b  \b\b", STDOUT);
 }
 
-int		has_not_closed_pipe(char *command, size_t command_len)
+char	*skip_quotes(char *command, char c)
+{
+	while (*command != '\0' && *command != c)
+	{
+		if (*command == '\\')
+			command = skip_bslash(command);
+		else
+			command += 1;
+	}
+	return (command);
+}
+
+int		are_quotes_balanced(char *command)
+{
+	if (*command == '\\')
+		command = skip_bslash(command);
+	while (*command != '\0')
+	{
+		if (*command == '\'')
+			command = skip_quotes(command + 1, '\'');
+		else if (*command == '\"')
+			command = skip_quotes(command + 1, '\"');
+		if (*command == '\0')
+			return (0);
+		else
+			command += 1;
+		if (*command == '\\')
+			command = skip_bslash(command);
+	}
+	return (1);
+}
+
+int		has_unexpected_end(char *command, size_t command_len)
 {
 	char	*command_end;
 	size_t	backslash_counter;
 
 	if (command_len < 2)
 		return (0);
+	if (!(are_quotes_balanced(command)))
+		return (1);
 	command_end = &(command[command_len - 1]);
 	while (command_end >= command && ft_isspace(*command_end))
 		command_end--;
@@ -72,21 +112,23 @@ int		ends_with_backslash_newline(char *command, size_t command_len)
 	return (backslash_counter % 2 != 0);
 }
 
-int		check_sytnax_and_pipe(char *command, size_t *command_len, int count)
+int		check_sytnax(char *command, size_t *command_len, int count)
 {
 	char	*syntax_error;
-	int		ctrld_flag;
+	int		do_read;
 
-	if ((ctrld_flag = (count == 0 || command[*command_len - 1] != '\n')))
+	if ((do_read = (count == 0 || command[*command_len - 1] != '\n')))
 	{
 		ft_putstr("  \b\b", STDOUT);
-		if (*command_len == 0)
-			return (0);
-		return (1);
+		return (*command_len != 0);
 	}
 	if ((syntax_error = check_syntax_errors(command)))
-		print_error_and_exit(syntax_error);
-	if (has_not_closed_pipe(command, *command_len))
+	{
+		set_new_value("?", "258");
+		print_error(0, syntax_error);
+		return (-1);
+	}
+	if (has_unexpected_end(command, *command_len))
 	{
 		ft_putstr("> ", STDOUT);
 		return (1);
@@ -98,33 +140,38 @@ int		check_sytnax_and_pipe(char *command, size_t *command_len, int count)
 		ft_putstr("> ", STDOUT);
 		return (1);
 	}
-	return (ctrld_flag);
+	return (do_read);
 }
 
 char	*read_command(void)
 {
 	int		count;
-	char	command[BUFFER_SIZE];
 	char	buf[BUFFER_SIZE];
-	int		ctrld_flag;
-	size_t	command_len;
+	char	command[BUFFER_SIZE];
+	int		do_read;
 
 	if ((signal(SIGINT, handle_signal)) == SIG_ERR)
-		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGINT\n", SHELL_NAME);
+		print_error(0, "Error: Cannot catch SIGINT");
 	if ((signal(SIGQUIT, handle_signal)) == SIG_ERR)
-		ft_fprintf(STDERR, "\n%s: Error: Cannot catch SIGQUIT\n", SHELL_NAME);
-	command_len = 0;
-	ctrld_flag = 1;
+		print_error(0, "Error: Cannot catch SIGQUIT");
+	g_command_len = 0;
+	do_read = 1;
 	ft_putstr(PROMPT_STRING, STDOUT);
-	while (ctrld_flag)
+	while (do_read)
 	{
-		if ((count = read(0, buf, BUFFER_SIZE - 1)) == -1)
+		if ((count = read(STDIN, buf, BUFFER_SIZE - 1)) == -1)
+		{
+			print_error(0, strerror(errno));
 			return (0);
+		}
 		buf[count] = '\0';
-		ft_strlcpy(&command[command_len], buf,
-				BUFFER_SIZE - (command_len + count));
-		command_len += count;
-		ctrld_flag = check_sytnax_and_pipe(command, &command_len, count);
+		ft_strlcpy(&command[g_command_len], buf,
+				BUFFER_SIZE - g_command_len + count);
+		g_command_len += count;
+		if (g_command_len >= BUFFER_SIZE)
+			break ;
+		if ((do_read = check_sytnax(command, &g_command_len, count)) == -1)
+			return (0);
 	}
 	return (insert_env_variables(command));
 }

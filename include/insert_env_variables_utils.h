@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:05:10 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 14:10:25 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/16 16:23:48 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int		is_in_single_quotes(char *str, int index);
 int		is_env_var(char *command, int index);
 char	*get_var_name(char *str);
-size_t	count_result_len(char *command);
+int		count_result_len(char *command);
 int		iterate_loop(char *result, char *command, int i);
 
 #endif

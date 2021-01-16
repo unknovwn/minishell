@@ -7,7 +7,7 @@ SOURCE_FILES = minishell.c \
 			   env_utils2.c \
 			   insert_env_variables.c \
 			   insert_env_variables_utils.c \
-			   print_error_and_exit.c \
+			   print_error.c \
 			   checkingSyntaxErrors/check_syntax_errors.c \
 			   checkingSyntaxErrors/skipping.c \
 			   checkingSyntaxErrors/utils.c \

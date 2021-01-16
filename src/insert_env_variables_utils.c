@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:03:37 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 14:04:16 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/16 16:23:34 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_var_name(char *str)
 	int		i;
 
 	i = 0;
-	name_len = ft_isdigit(str[0]);
+	name_len = ft_isdigit(str[0]) || str[0] == '?';
 	if (!name_len)
 	{
 		name_len = 0;
@@ -89,7 +89,7 @@ char	*get_var_name(char *str)
 	return (name);
 }
 
-size_t	count_result_len(char *command)
+int		count_result_len(char *command)
 {
 	size_t	result_len;
 	char	*var_name;
@@ -103,7 +103,7 @@ size_t	count_result_len(char *command)
 		if (is_env_var(command, i))
 		{
 			if (!(var_name = get_var_name(&(command[++i]))))
-				print_error_and_exit(strerror(errno));
+				return (-1);
 			i += ft_strlen(var_name);
 			if ((var_value = get_var_value(var_name)))
 				result_len += ft_strlen(var_value);
