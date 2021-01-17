@@ -26,12 +26,11 @@ int		is_pipe(char *s)
 	return (*s == '|');
 }
 
+
 int		is_redirect(char *s)
 {
 	if (*s == '>' || *s == '<')
 		return (1);
-	else if (ft_strcmp(s, ">>") == 0)
-		return (2);
 	else
 		return (0);
 }
