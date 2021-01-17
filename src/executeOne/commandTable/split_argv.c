@@ -6,16 +6,16 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 00:49:08 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/17 00:49:10 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/17 20:27:00 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
 #include "command_table.h"
-#include "../split_str.h"
-#include "../skipping.h"
-#include "../libft.h"
+#include "split_str.h"
+#include "skipping.h"
+#include "libft.h"
 
 static size_t	count_args(char *command)
 {

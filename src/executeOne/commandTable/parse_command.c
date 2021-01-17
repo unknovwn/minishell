@@ -6,17 +6,17 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:49:09 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/16 19:49:10 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/17 20:26:34 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 #include "command_table.h"
-#include "../skipping.h"
-#include "../super_split.h"
-#include "../libft.h"
-#include "../utils.h"
+#include "skipping.h"
+#include "super_split.h"
+#include "libft.h"
+#include "utils.h"
 
 static int		check_command(char *command)
 {

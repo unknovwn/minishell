@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/16 17:24:07 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:02:38 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,27 @@
 t_list	*g_env;
 int		g_exit_code;
 
+void		parse_env_var(char *var)
+{
+	char	*equals_sign;
+	char	*name;
+	char	*value;
+
+	if (!(equals_sign = ft_strchr(var, '=')))
+	{
+		clear_env();
+		print_error_and_exit(1, 0, "error: invalid program environment");
+	}
+	*equals_sign = '\0';
+	name = var;
+	value = (equals_sign + 1);
+	if ((add_env_var(name, value, 0)) == -1)
+	{
+		clear_env();
+		print_error_and_exit(1, 0, strerror(errno));
+	}
+}
+
 void	repl(void)
 {
 	char	*command;
@@ -32,12 +53,14 @@ void	repl(void)
 	{
 		if (!(command = read_command()))
 			continue ;
-		return_value = execute_command(command);
+		return_value = execute(command);
+		free(command);
 		if (return_value == MINISHELL_EXIT)
 			break ;
 		if (!(ascii_return_value = ft_uitoa(return_value)))
 			continue ;
-		set_new_value("?", ascii_return_value);
+		set_new_value("?", ascii_return_value, 1);
+		free(ascii_return_value);
 	}
 }
 

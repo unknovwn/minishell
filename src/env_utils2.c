@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 20:01:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/16 16:33:32 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:04:34 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,17 @@ void		clear_env(void)
 	ft_lstclear(&g_env, delete_env_var);
 }
 
-void		parse_env_var(char *var)
-{
-	char	*equals_sign;
-	char	*name;
-	char	*value;
-
-	if (!(equals_sign = ft_strchr(var, '=')))
-	{
-		clear_env();
-		print_error_and_exit(1, "error: invalid program environment");
-	}
-	*equals_sign = '\0';
-	name = var;
-	value = (equals_sign + 1);
-	if ((add_env_var(name, value)) == -1)
-	{
-		clear_env();
-		print_error_and_exit(1, strerror(errno));
-	}
-}
-
 t_list		*init_env(void)
 {
 	t_env_variable	*last_return_value;
 	t_list			*env;
 
-	if (!(last_return_value = create_env_var("?", "0")))
-		print_error_and_exit(1, strerror(errno));
+	if (!(last_return_value = create_env_var("?", "0", 1)))
+		print_error_and_exit(1, 0, strerror(errno));
 	if (!(env = ft_lstnew(last_return_value)))
 	{
 		delete_env_var(last_return_value);
-		print_error_and_exit(1, strerror(errno));
+		print_error_and_exit(1, 0, strerror(errno));
 	}
 	return (env);
 }
@@ -75,7 +54,7 @@ int			is_valid_name(char *name)
 	return (i != 0);
 }
 
-int			set_new_value(char *name, char *value)
+int			set_new_value(char *name, char *value, int shell_only)
 {
 	t_list	*g_env_p;
 	char	*new_value;
@@ -92,10 +71,11 @@ int			set_new_value(char *name, char *value)
 		{
 			free(((t_env_variable*)(g_env_p->content))->value);
 			((t_env_variable*)(g_env_p->content))->value = new_value;
+			((t_env_variable*)(g_env_p->content))->shell_only = shell_only;
 			return (0);
 		}
 		g_env_p = g_env_p->next;
 	}
 	free(new_value);
-	return (add_env_var(name, value));
+	return (add_env_var(name, value, shell_only));
 }

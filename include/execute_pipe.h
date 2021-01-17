@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon_and_pipe.h                               :+:      :+:    :+:   */
+/*   execute_pipe.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 18:55:38 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/11 18:55:39 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/17 20:24:05 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/17 20:24:50 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef EXECUTE_PIPE_H
+# define EXECUTE_PIPE_H
 
-int		is_semicolon(char *s);
-int		is_pipe(char *s);
-int		is_redirect(char *s);
+# include "command_table.h"
 
-char	*check_error_near(char *current);
-char	*check_error_near_with_redirect_to(char *current);
+int	execute_pipe(t_command_tab *tab);
 
 #endif

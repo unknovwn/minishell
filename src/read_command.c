@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/16 21:12:30 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 15:25:30 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int		check_sytnax(char *command, size_t *command_len, int count)
 	}
 	if ((syntax_error = check_syntax_errors(command)))
 	{
-		set_new_value("?", "258");
+		set_new_value("?", "258", 1);
 		print_error(0, syntax_error);
 		return (-1);
 	}

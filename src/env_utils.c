@@ -6,12 +6,13 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/16 14:51:06 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:04:13 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_utils.h"
 #include "minishell_macro.h"
+#include "print_error.h"
 #include <sys/errno.h>
 #include <string.h>
 
@@ -57,7 +58,7 @@ char			*get_var_value(char *name)
 	return (0);
 }
 
-t_env_variable	*create_env_var(char *name, char *value)
+t_env_variable	*create_env_var(char *name, char *value, int shell_only)
 {
 	t_env_variable	*env_var;
 	char			*var_name;
@@ -80,23 +81,24 @@ t_env_variable	*create_env_var(char *name, char *value)
 	}
 	env_var->name = var_name;
 	env_var->value = var_value;
+	env_var->shell_only = shell_only;
 	return (env_var);
 }
 
-int				add_env_var(char *name, char *value)
+int				add_env_var(char *name, char *value, int shell_only)
 {
 	t_list			*list_elem;
 	t_env_variable	*env_var;
 
-	if (!(env_var = create_env_var(name, value)))
+	if (!(env_var = create_env_var(name, value, shell_only)))
 	{
-		ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
+		print_error(0, strerror(errno));
 		return (-1);
 	}
 	if (!(list_elem = ft_lstnew(env_var)))
 	{
 		delete_env_var(env_var);
-		ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
+		print_error(0, strerror(errno));
 		return (-1);
 	}
 	ft_lstadd_back(&g_env, list_elem);

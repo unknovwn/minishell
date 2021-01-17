@@ -6,13 +6,13 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:17:45 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/14 13:17:47 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/17 20:26:19 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command_table.h"
-#include "../split_str.h"
-#include "../utils.h"
+#include "split_str.h"
+#include "utils.h"
 
 static int	set_redirect(t_command *cell, t_split_str s)
 {

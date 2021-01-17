@@ -6,14 +6,14 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 18:33:55 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/14 18:33:56 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/17 20:26:38 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 #include "command_table.h"
-#include "../libft.h"
+#include "libft.h"
 
 void			del_command_tab(t_command_tab **tab)
 {

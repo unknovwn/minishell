@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   command_table.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 18:23:44 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:11:26 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define COMMAND_TABLE_H
 
 # include <stdlib.h>
-# include "../split_str.h"
+# include "split_str.h"
 
 # define STDIN 0
 # define STDOUT 1

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:28:51 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/16 14:01:27 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:07:20 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell_macro.h"
 #include "libft.h"
 #include "env_utils.h"
+#include "print_error.h"
 #include <sys/errno.h>
 #include <string.h>
 
@@ -27,8 +28,7 @@ char	**sort_names(void)
 
 	if (!(names = (char**)malloc(sizeof(char*) * (ft_lstsize(g_env) + 1))))
 	{
-		ft_fprintf(STDERR, "%s: %s: %s\n",
-				SHELL_NAME, COMMAND, strerror(errno));
+		print_error(COMMAND, strerror(errno));
 		return (0);
 	}
 	g_env_p = g_env;
@@ -67,7 +67,7 @@ int		print_sorted_env(void)
 	return (0);
 }
 
-int		add_var(char *assignment)
+int		add_var(char *assignment, int shell_only)
 {
 	char	*equals_sign;
 	char	*name;
@@ -90,10 +90,10 @@ int		add_var(char *assignment)
 		value = (equals_sign + 1);
 	else
 		value = 0;
-	return (set_new_value(name, value));
+	return (set_new_value(name, value, shell_only));
 }
 
-int		export_command(int argc, char **argv)
+int		export_command(int argc, char **argv, int shell_only)
 {
 	int	i;
 	int	ret;
@@ -104,7 +104,7 @@ int		export_command(int argc, char **argv)
 	ret = 0;
 	while (i < argc)
 	{
-		if ((add_var(argv[i++])) == -1)
+		if ((add_var(argv[i++], shell_only)) == -1)
 			ret = 1;
 	}
 	return (ret);

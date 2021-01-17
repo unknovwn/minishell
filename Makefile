@@ -2,7 +2,7 @@ NAME = minishell
 
 SOURCE_FILES = minishell.c \
 			   read_command.c \
-			   execute_command.c \
+			   execute.c \
 			   env_utils.c \
 			   env_utils2.c \
 			   insert_env_variables.c \
@@ -16,7 +16,24 @@ SOURCE_FILES = minishell.c \
 			   builtins/pwd.c \
 			   builtins/env.c \
 			   builtins/export.c \
-			   builtins/unset.c
+			   builtins/unset.c \
+			   builtins/echo.c \
+			   create_envp.c \
+			   execute_pipe.c \
+			   find_path.c \
+			   executeOne/execute_one.c \
+			   executeOne/commandTable/command_table_utils.c \
+			   executeOne/commandTable/command_table_utils2.c \
+			   executeOne/commandTable/command_to_command_tab.c \
+			   executeOne/commandTable/init_command_tab.c \
+			   executeOne/commandTable/init_default.c \
+			   executeOne/commandTable/parse_command.c \
+			   executeOne/commandTable/set_redirect_between_commands.c \
+			   executeOne/commandTable/set_redirect_double_to.c \
+			   executeOne/commandTable/set_redirect_from.c \
+			   executeOne/commandTable/set_redirect_to.c \
+			   executeOne/commandTable/split_argv.c
+
 SRC = $(addprefix src/, $(SOURCE_FILES))
 
 ###################################  LIBS     ##################################

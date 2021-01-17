@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mutant_split.h                                     :+:      :+:    :+:   */
+/*   create_envp.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 15:03:32 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/02 05:28:09 by gdrive           ###   ########.fr       */
+/*   Created: 2021/01/17 20:19:06 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/17 20:19:43 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SUPER_SPLIT_H
-# define SUPER_SPLIT_H
+#ifndef CREATE_ENVP_H
+# define CREATE_ENVP_H
 
-# include <stdint.h>
-# include <stdlib.h>
-
-char		**super_split(const char *s, int (*delim_comparator)(char*));
+char	**create_envp(void);
 
 #endif

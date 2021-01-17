@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:06:27 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/16 19:06:28 by gdrive           ###   ########.fr       */
+/*   Updated: 2021/01/17 20:26:56 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 
 #include "command_table.h"
-#include "../split_str.h"
+#include "split_str.h"
 
 int				set_redirect_to(t_command *cell, t_split_str s)
 {
