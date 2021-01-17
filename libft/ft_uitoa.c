@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 21:35:27 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/11 22:38:00 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/17 15:30:28 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ char	*ft_uitoa(unsigned int n)
 	result_len = get_number_len(n);
 	if (!(result = (char *)malloc(sizeof(char) * (result_len + 1))))
 		return (0);
+	result[result_len] = '\0';
 	while (result_len)
 	{
 		result[--result_len] = n % 10;
 		n /= 10;
 	}
-	return (0);
+	return (result);
 }
