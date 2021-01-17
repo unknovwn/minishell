@@ -10,9 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 #include "command_table.h"
 #include "../split_str.h"
 #include "../skipping.h"
+#include "../libft.h"
 
 static size_t	count_args(char *command)
 {
@@ -38,18 +41,10 @@ static size_t	count_args(char *command)
 	return (len);
 }
 
-char			**split_argv(char *command)
+static int		copy_argv(char **argv, size_t len, t_split_str s)
 {
-	t_split_str	s;
-	char		**argv;
-	size_t		len;
-	size_t		i;
+	size_t	i;
 
-	len = count_args(command);
-	if ((argv = (char**)malloc(sizeof(char*) * (len + 1))) == NULL)
-		return (NULL);
-	argv[len] = NULL;
-	init_str(&s, command, is_redirect_or_space);
 	i = 0;
 	while (i < len)
 	{
@@ -61,8 +56,27 @@ char			**split_argv(char *command)
 			continue ;
 		}
 		if ((argv[i] = copy_and_skip_string(&s)) == NULL)
-			return (NULL);
+			return (-1);
 		i += 1;
+	}
+	return (0);
+}
+
+char			**split_argv(char *command)
+{
+	t_split_str	s;
+	char		**argv;
+	size_t		len;
+
+	len = count_args(command);
+	if ((argv = (char**)malloc(sizeof(char*) * (len + 1))) == NULL)
+		return (NULL);
+	argv[len] = NULL;
+	init_str(&s, command, is_redirect_or_space);
+	if (copy_argv(argv, len, s) != 0)
+	{
+		free_string_arr(argv);
+		return (NULL);
 	}
 	return (argv);
 }

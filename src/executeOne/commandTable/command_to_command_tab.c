@@ -58,7 +58,6 @@ static int	set_redirects(t_command *cell, char *command)
 
 int			commands_to_command_tab(t_command_tab *tab, char **commands)
 {
-	t_split_str	s;
 	size_t		i;
 
 	i = 0;

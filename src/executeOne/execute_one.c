@@ -14,6 +14,11 @@
 
 #include "commandTable/command_table.h"
 
+/*
+** print_command_tab(t_command_tab *command_table);
+** - Should be revoved in the future.
+*/
+
 static void	print_command_tab(t_command_tab *command_tab)
 {
 	t_command	*cells;
@@ -43,11 +48,10 @@ static void	print_command_tab(t_command_tab *command_tab)
 int	execute_one(char *command)
 {
 	t_command_tab	*tab;
-	char			**by_pipe;
 
 	if ((tab = parse_command(command)) == NULL)
 		return (-1);
-	print_command_tab(tab);
+	print_command_tab(tab); // for test
 	del_command_tab(&tab);
 	return (0);
 }
