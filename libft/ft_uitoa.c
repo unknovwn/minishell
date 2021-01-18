@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 21:35:27 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 15:30:28 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:19:15 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_uitoa(unsigned int n)
 	result[result_len] = '\0';
 	while (result_len)
 	{
-		result[--result_len] = n % 10;
+		result[--result_len] = (n % 10) + '0';
 		n /= 10;
 	}
 	return (result);

@@ -19,7 +19,8 @@ SOURCE_FILES = minishell.c \
 			   builtins/unset.c \
 			   builtins/echo.c \
 			   create_envp.c \
-			   execute_pipe.c \
+			   execute_command_tab.c \
+			   execute_command_tab_utils.c \
 			   find_path.c \
 			   executeOne/execute_one.c \
 			   executeOne/commandTable/command_table_utils.c \

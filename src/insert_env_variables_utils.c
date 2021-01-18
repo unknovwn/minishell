@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:03:37 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/16 16:23:34 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 16:50:04 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int		is_env_var(char *command, int index)
 
 	if (command[index] != '$')
 		return (0);
-	if (is_in_single_quotes(command, index))
+	if (is_in_single_quotes(command, index)
+			|| command[index + 1] == '\"')
 		return (0);
 	backslash_counter = 0;
 	j = 1;

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:43:25 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/15 21:56:45 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:22:56 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		unset_command(int argc, char **argv)
 			ret = 1;
 			continue ;
 		}
-		delete_env_var(argv[i++]);
+		remove_var_from_env(argv[i++]);
 	}
 	return (ret);
 }

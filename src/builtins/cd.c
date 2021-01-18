@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 18:52:07 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:06:04 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:30:00 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ int	cd_command(int argc, char **argv)
 	path = argv[1];
 	if (argc == 1)
 		path = get_var_value("HOME");
+	if (!path)
+	{
+		ft_fprintf(STDERR, "%s: %s: %s\n",
+				SHELL_NAME, COMMAND, "HOME not set");
+		return (1);
+	}
 	if ((chdir(path)) == -1)
 	{
-		ft_fprintf(STDERR, "%s: %s: %s: %s",
+		ft_fprintf(STDERR, "%s: %s: %s: %s\n",
 				SHELL_NAME, COMMAND, path, strerror(errno));
 		return (1);
 	}

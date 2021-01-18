@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:42:46 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:32:51 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 16:39:07 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ char	*find_path(char *command)
 {
 	char	**paths;
 	char	*result;
-	int		is_found;
 	int		i;
 	size_t	result_len;
+	char	*path;
 
-	if (!(paths = super_split(get_var_value("PATH"), is_s_colon)))
+	if (!(path = get_var_value("PATH")))
+		return (0);
+	if (!(paths = super_split(path, is_s_colon, 0)))
 		print_error_and_exit(1, 0, strerror(errno));
 	i = 0;
 	while (paths[i])
 	{
-		if ((is_found = dir_has_file(paths[i], command)) == 1)
+		if ((dir_has_file(paths[i], command)) == 1)
 		{
 			result_len = ft_strlen(paths[i]) + ft_strlen(command) + 1;
 			if (!(result = (char *)malloc(sizeof(char) * (result_len + 1))))
@@ -68,11 +70,6 @@ char	*find_path(char *command)
 			ft_strncat(result, command, ft_strlen(command));
 			free_string_arr(paths);
 			return (result);
-		}
-		else if (is_found == -1)
-		{
-			free_string_arr(paths);
-			print_error_and_exit(1, 0, strerror(errno));
 		}
 		i++;
 	}

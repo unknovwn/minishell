@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:34:30 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 16:37:50 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		execute(char *command)
 		return (MINISHELL_EXIT);
 	}
 	command[ft_strlen(command) - 1] = '\0';
-	if (!(commands = super_split(command, is_s_semicolon)))
+	if (!(commands = super_split(command, is_s_semicolon, 1)))
 	{
 		print_error(0, strerror(errno));
 		return (1);
@@ -46,7 +46,7 @@ int		execute(char *command)
 	i = 0;
 	while (commands[i])
 	{
-		if ((ret = execute_one(*commands)) == -1)
+		if ((ret = execute_one(commands[i])) == -1)
 		{
 			if (errno)
 				ft_fprintf(STDOUT, "%s: %s\n", SHELL_NAME, strerror(errno));

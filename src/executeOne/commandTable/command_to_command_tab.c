@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:17:45 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/17 20:26:19 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 17:31:23 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ int			commands_to_command_tab(t_command_tab *tab, char **commands)
 	{
 		if ((tab->cells[i].argv = split_argv(commands[i])) == NULL)
 			return (-1);
+		if (tab->cells[i].argv[0] == NULL)
+		{
+			free(tab->cells[i].argv);
+			tab->cells[i].argv = NULL;
+		}
 		if (set_redirects(&(tab->cells[i]), commands[i]) != 0)
 			return (-1);
 		i += 1;

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 18:19:27 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:06:21 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 17:34:30 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		exit_command(int argc, char **argv)
 	}
 	if (argc > 2)
 	{
-		print_error(COMMAND, "too many arguments\n");
+		print_error(COMMAND, "too many arguments");
 		return (1);
 	}
 	g_exit_code = ft_atoi(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:02:38 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 17:46:41 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 t_list	*g_env;
 int		g_exit_code;
+int		g_sin;
+int		g_sout;
 
 void		parse_env_var(char *var)
 {
@@ -57,7 +59,7 @@ void	repl(void)
 		free(command);
 		if (return_value == MINISHELL_EXIT)
 			break ;
-		if (!(ascii_return_value = ft_uitoa(return_value)))
+		if (!(ascii_return_value = ft_uitoa(return_value & 255)))
 			continue ;
 		set_new_value("?", ascii_return_value, 1);
 		free(ascii_return_value);
@@ -69,6 +71,10 @@ int		main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	g_exit_code = 0;
+	if ((g_sin = dup(STDIN)) == -1)
+		print_error_and_exit(1, 0, strerror(errno));
+	if ((g_sout = dup(STDOUT)) == -1)
+		print_error_and_exit(1, 0, strerror(errno));
 	g_env = init_env();
 	while (*envp)
 		parse_env_var(*envp++);

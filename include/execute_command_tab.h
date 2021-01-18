@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   execute_command_tab.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 18:18:25 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 13:38:57 by mgeneviv         ###   ########.fr       */
+/*   Created: 2021/01/17 20:24:05 by mgeneviv          #+#    #+#             */
+/*   Updated: 2021/01/18 15:18:06 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_macro.h"
-#include "libft.h"
+#ifndef EXECUTE_COMMAND_TAB_H
+# define EXECUTE_COMMAND_TAB_H
 
-int		echo_command(int argc, char **argv)
-{
-	int	i;
-	int	newline;
+# include "command_table.h"
 
-	newline = !(argc > 1 && (ft_strcmp(argv[1], "-n") == 0));
-	i = 1 + !newline;
-	while (i < argc)
-	{
-		if (i > 1 + !newline)
-			ft_putstr(" ", STDOUT);
-		ft_putstr(argv[i++], STDOUT);
-	}
-	if (newline)
-		ft_putstr("\n", STDOUT);
-	return (0);
-}
+int	execute_command_tab(t_command_tab *tab);
+
+#endif

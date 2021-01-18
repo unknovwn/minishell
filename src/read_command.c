@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 15:25:30 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 17:54:17 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 size_t	g_command_len;
 
-void	handle_signal(int sig)
+static void	handle_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -36,7 +36,7 @@ void	handle_signal(int sig)
 		ft_putstr("\b\b  \b\b", STDOUT);
 }
 
-char	*skip_quotes(char *command, char c)
+char		*skip_quotes(char *command, char c)
 {
 	while (*command != '\0' && *command != c)
 	{
@@ -48,7 +48,7 @@ char	*skip_quotes(char *command, char c)
 	return (command);
 }
 
-int		are_quotes_balanced(char *command)
+int			are_quotes_balanced(char *command)
 {
 	if (*command == '\\')
 		command = skip_bslash(command);
@@ -68,7 +68,7 @@ int		are_quotes_balanced(char *command)
 	return (1);
 }
 
-int		has_unexpected_end(char *command, size_t command_len)
+int			has_unexpected_end(char *command, size_t command_len)
 {
 	char	*command_end;
 	size_t	backslash_counter;
@@ -92,7 +92,7 @@ int		has_unexpected_end(char *command, size_t command_len)
 	return (backslash_counter % 2 == 0);
 }
 
-int		ends_with_backslash_newline(char *command, size_t command_len)
+int			ends_with_backslash_newline(char *command, size_t command_len)
 {
 	char	*command_end;
 	size_t	backslash_counter;
@@ -112,7 +112,7 @@ int		ends_with_backslash_newline(char *command, size_t command_len)
 	return (backslash_counter % 2 != 0);
 }
 
-int		check_sytnax(char *command, size_t *command_len, int count)
+int			check_sytnax(char *command, size_t *command_len, int count)
 {
 	char	*syntax_error;
 	int		do_read;
@@ -143,7 +143,7 @@ int		check_sytnax(char *command, size_t *command_len, int count)
 	return (do_read);
 }
 
-char	*read_command(void)
+char		*read_command(void)
 {
 	int		count;
 	char	buf[BUFFER_SIZE];

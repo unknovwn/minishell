@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 19:59:21 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 14:45:16 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:24:37 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_env_variable {
 }				t_env_variable;
 
 void			delete_env_var(void *env_var);
+void			remove_var_from_env(char *name);
 void			clear_env(void);
 char			*get_var_value(char *name);
 t_env_variable	*create_env_var(char *name, char *value, int shell_only);

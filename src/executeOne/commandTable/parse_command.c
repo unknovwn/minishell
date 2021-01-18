@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:49:09 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/17 20:26:34 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 16:39:37 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		set_command_tab(t_command_tab *tab, char *command)
 {
 	char			**by_pipe;
 
-	if ((by_pipe = super_split(command, is_pipe)) == NULL)
+	if ((by_pipe = super_split(command, is_pipe, 1)) == NULL)
 		return (-1);
 	if (init_default(tab, by_pipe) != 0)
 	{
