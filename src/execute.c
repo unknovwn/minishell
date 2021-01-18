@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 20:12:21 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 21:40:16 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		is_s_semicolon(char *c)
 	return (*c == ';');
 }
 
-int		vanya_lox(char **commands)
+int		execute_commands(char **commands)
 {
 	int ret;
 	int i;
@@ -60,7 +60,7 @@ int		execute(char *command)
 		print_error(0, strerror(errno));
 		return (1);
 	}
-	if ((ret = vanya_lox(commands)) == -1)
+	if ((ret = exec_commands(commands)) == -1)
 		ret = 1;
 	return (ret);
 }
