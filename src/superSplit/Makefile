@@ -11,10 +11,13 @@ STRUCT_SPLIT_STR_FILES =	init_split_str.c \
 							skip_string.c \
 							split_skip_space.c \
 							count_string_len.c \
+							count_string_len_with_protect.c \
 							count_strings.c \
 							copy_and_skip_string.c \
 							copy_strings_utils.c \
-							copy_strings.c
+							copy_and_skip_string_with_protect.c \
+							copy_strings.c \
+							copy_strings_with_protect.c
 STRUCT_SPLIT_STR = $(addprefix split_str/, $(STRUCT_SPLIT_STR_FILES)) \
 
 ################################################################################
@@ -37,7 +40,8 @@ SEGINFOFLAG = -fsanitize=address
 INCLD = include/
 
 .c.o:
-	$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
+	#$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 ################################################################################
 

@@ -34,7 +34,8 @@ static void		free_strings(t_arr_strings *strings)
 ** Split that supports quotes escape charactes (" ", ' ' and backslash).
 */
 
-char			**super_split(const char *s, int (*delim_comparator)(char*))
+char			**super_split(const char *s, int (*delim_comparator)(char*), 
+												int with_protect)
 {
 	t_arr_strings	strings;
 	t_split_str		str;
@@ -48,10 +49,15 @@ char			**super_split(const char *s, int (*delim_comparator)(char*))
 		return (NULL);
 	}
 	strings.arr[strings.len] = NULL;
-	if (strings.len != copy_strings(&strings, str))
+	if (with_protect > 0)
 	{
-		write(2, "ERROR: cannot allocate memory\n", 30);
-		free_strings(&strings);
+		if (strings.len != copy_strings(&strings, str))
+			free_strings(&strings);
+	}
+	else
+	{
+		if (strings.len != copy_strings_with_protect(&strings, str))
+			free_strings(&strings);
 	}
 	return (strings.arr);
 }

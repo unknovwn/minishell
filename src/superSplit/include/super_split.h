@@ -16,6 +16,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 
-char		**super_split(const char *s, int (*delim_comparator)(char*));
+char			**super_split(const char *s, int (*delim_comparator)(char*), 
+												int with_protect);
 
 #endif
