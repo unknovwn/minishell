@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:28:51 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:07:20 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 18:25:04 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,13 @@ int		add_var(char *assignment, int shell_only)
 	has_value = 1;
 	if (!(equals_sign = ft_strchr(assignment, '=')))
 		has_value = 0;
-	*equals_sign = '\0';
+	else
+		*equals_sign = '\0';
 	name = assignment;
 	if (!(is_valid_name(name)))
 	{
-		*equals_sign = '=';
+		if (equals_sign)
+			*equals_sign = '=';
 		ft_fprintf(STDERR, "%s: `%s\': %s: not a valid identifier\n",
 				SHELL_NAME, COMMAND, assignment);
 		return (-1);
@@ -98,10 +100,10 @@ int		export_command(int argc, char **argv, int shell_only)
 	int	i;
 	int	ret;
 
-	i = (ft_strcmp(argv[0], "export") == 0);
-	if (argc == 1 && i == 1)
+	if (argc == 1)
 		return (print_sorted_env());
 	ret = 0;
+	i = 1;
 	while (i < argc)
 	{
 		if ((add_var(argv[i++], shell_only)) == -1)

@@ -6,10 +6,11 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 19:09:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/13 19:16:31 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 18:24:30 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s)

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 20:01:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:04:34 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 18:29:40 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ int			set_new_value(char *name, char *value, int shell_only)
 	t_list	*g_env_p;
 	char	*new_value;
 
-	if (!(new_value = ft_strdup(value)))
+	if (!value)
+		new_value = 0;
+	else if (!(new_value = ft_strdup(value)))
 	{
 		ft_fprintf(STDERR, "%s: %s\n", SHELL_NAME, strerror(errno));
 		return (-1);
@@ -69,7 +71,8 @@ int			set_new_value(char *name, char *value, int shell_only)
 	{
 		if ((ft_strcmp(((t_env_variable*)(g_env_p->content))->name, name)) == 0)
 		{
-			free(((t_env_variable*)(g_env_p->content))->value);
+			if (value)
+				free(((t_env_variable*)(g_env_p->content))->value);
 			((t_env_variable*)(g_env_p->content))->value = new_value;
 			((t_env_variable*)(g_env_p->content))->shell_only = shell_only;
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:16:13 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 12:51:35 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 18:52:04 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void			delete_env_var(void *env_var)
 
 	env_var_p = (t_env_variable*)env_var;
 	free(env_var_p->name);
-	free(env_var_p->value);
+	if (env_var_p->value)
+		free(env_var_p->value);
 	free(env_var_p);
 }
 
@@ -31,13 +32,18 @@ void			remove_var_from_env(char *name)
 	t_list	*prev;
 	t_list	*curr;
 
-	prev = g_env;
-	while ((curr = prev->next))
+	prev = 0;
+	curr = g_env;
+	while (curr)
 	{
 		if ((ft_strcmp(((t_env_variable*)(curr->content))->name, name)) == 0)
 		{
-			prev->next = curr->next;
+			if (!prev)
+				g_env = curr->next;
+			else
+				prev->next = curr->next;
 			ft_lstdelone(curr, delete_env_var);
+			return ;
 		}
 		prev = curr;
 		curr = curr->next;
@@ -76,7 +82,8 @@ t_env_variable	*create_env_var(char *name, char *value, int shell_only)
 	if (!(env_var = (t_env_variable *)malloc(sizeof(t_env_variable))))
 	{
 		free(var_name);
-		free(var_value);
+		if (var_value)
+			free(var_value);
 		return (0);
 	}
 	env_var->name = var_name;
