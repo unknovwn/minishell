@@ -40,8 +40,7 @@ SEGINFOFLAG = -fsanitize=address
 INCLD = include/
 
 .c.o:
-	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
-	#$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 ################################################################################
 
