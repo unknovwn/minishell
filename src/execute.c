@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 16:37:50 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 20:12:21 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,11 @@ int		is_s_semicolon(char *c)
 	return (*c == ';');
 }
 
-int		execute(char *command)
+int		vanya_lox(char **commands)
 {
-	char	**commands;
-	int		i;
-	int		ret;
+	int ret;
+	int i;
 
-	ret = 0;
-	if (ft_strlen(command) == 0 || ft_strcmp(command, "exit\n") == 0)
-	{
-		ft_putstr("exit\n", STDOUT);
-		return (MINISHELL_EXIT);
-	}
-	command[ft_strlen(command) - 1] = '\0';
-	if (!(commands = super_split(command, is_s_semicolon, 1)))
-	{
-		print_error(0, strerror(errno));
-		return (1);
-	}
 	i = 0;
 	while (commands[i])
 	{
@@ -54,7 +41,26 @@ int		execute(char *command)
 		i++;
 	}
 	free_string_arr(commands);
-	if (ret == -1)
+	return (ret);
+}
+
+int		execute(char *command)
+{
+	char	**commands;
+	int		ret;
+
+	if (ft_strlen(command) == 0)
+	{
+		ft_putstr("exit\n", STDOUT);
+		return (MINISHELL_EXIT);
+	}
+	command[ft_strlen(command) - 1] = '\0';
+	if (!(commands = super_split(command, is_s_semicolon, 1)))
+	{
+		print_error(0, strerror(errno));
+		return (1);
+	}
+	if ((ret = vanya_lox(commands)) == -1)
 		ret = 1;
 	return (ret);
 }

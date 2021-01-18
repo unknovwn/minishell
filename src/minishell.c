@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 16:26:36 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 17:46:41 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 21:26:53 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@ int		g_exit_code;
 int		g_sin;
 int		g_sout;
 
-void		parse_env_var(char *var)
+void	handle_signal_exec(int sig)
+{
+	if (sig == SIGQUIT)
+		ft_putstr("Quit: 3", STDOUT);
+	ft_putstr("\n", STDOUT);
+}
+
+void	parse_env_var(char *var)
 {
 	char	*equals_sign;
 	char	*name;
@@ -55,6 +62,10 @@ void	repl(void)
 	{
 		if (!(command = read_command()))
 			continue ;
+		if ((signal(SIGINT, handle_signal_exec)) == SIG_ERR)
+			print_error(0, "Error: Cannot catch SIGINT");
+		if ((signal(SIGQUIT, handle_signal_exec)) == SIG_ERR)
+			print_error(0, "Error: Cannot catch SIGQUIT");
 		return_value = execute(command);
 		free(command);
 		if (return_value == MINISHELL_EXIT)

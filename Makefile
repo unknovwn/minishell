@@ -2,6 +2,7 @@ NAME = minishell
 
 SOURCE_FILES = minishell.c \
 			   read_command.c \
+			   read_utils.c \
 			   execute.c \
 			   env_utils.c \
 			   env_utils2.c \

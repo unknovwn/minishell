@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 16:03:42 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/17 20:09:39 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 20:01:38 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			count_envp_size(void)
 	return (envp_size);
 }
 
-char		*create_envp_elem(t_env_variable *env_var)
+char		*create_elem(t_env_variable *env_var)
 {
 	char	*result;
 	size_t	result_len;
@@ -63,8 +63,7 @@ char		**create_envp(void)
 	{
 		if (((t_env_variable*)(g_env_p->content))->shell_only == 0)
 		{
-			if (!(envp[i++] = create_envp_elem((t_env_variable*)
-							(g_env_p->content))))
+			if (!(envp[i++] = create_elem((t_env_variable*)(g_env_p->content))))
 			{
 				free_string_arr(envp);
 				return (0);
