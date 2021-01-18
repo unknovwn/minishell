@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 17:16:45 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 21:40:16 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/18 21:40:58 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		execute(char *command)
 		print_error(0, strerror(errno));
 		return (1);
 	}
-	if ((ret = exec_commands(commands)) == -1)
+	if ((ret = execute_commands(commands)) == -1)
 		ret = 1;
 	return (ret);
 }
