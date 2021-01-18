@@ -49,7 +49,7 @@ char			**super_split(const char *s, int (*delim_comparator)(char*),
 		return (NULL);
 	}
 	strings.arr[strings.len] = NULL;
-	if (with_protect > 0)
+	if (with_protect == 0)
 	{
 		if (strings.len != copy_strings(&strings, str))
 			free_strings(&strings);
