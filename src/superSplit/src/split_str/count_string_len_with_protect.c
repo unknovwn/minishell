@@ -31,7 +31,7 @@ static size_t	count_and_skip_symbol(t_split_str *s)
 	return (1);
 }
 
-size_t	count_string_len_with_protect(t_split_str s)
+size_t			count_string_len_with_protect(t_split_str s)
 {
 	size_t	len;
 

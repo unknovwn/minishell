@@ -59,7 +59,6 @@ char	*copy_with_and_skip_quotes_protecting(char *dst, t_split_str *s)
 		dst += 1;
 		s->current += 1;
 	}
-	s->current += 1;
 	s->after_protecting = skip_protected(s->current);
 	return (dst);
 }

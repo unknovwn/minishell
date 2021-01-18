@@ -24,13 +24,13 @@ static char	*copy_with_and_skip_symbol(char *dst, t_split_str *s)
 static char	*copy_with_and_skip_protected(char *dst, t_split_str *s)
 {
 	if (*s->current == '\\')
-		dst = copy_and_skip_bslash_protecting(dst, s);
+		dst = copy_with_and_skip_bslash_protecting(dst, s);
 	else
-		dst = copy_and_skip_quotes_protecting(dst, s);
+		dst = copy_with_and_skip_quotes_protecting(dst, s);
 	return (dst);
 }
 
-static void	copy_string(char *dst, t_split_str s)
+static void	copy_with_string(char *dst, t_split_str s)
 {
 	char	*dst_begin;
 
@@ -45,7 +45,7 @@ static void	copy_string(char *dst, t_split_str s)
 	*dst = '\0';
 }
 
-char	*copy_and_skip_string_with_protect(t_split_str *s)
+char		*copy_and_skip_string_with_protect(t_split_str *s)
 {
 	char	*string;
 	size_t	string_len;
@@ -55,7 +55,7 @@ char	*copy_and_skip_string_with_protect(t_split_str *s)
 	if (string == NULL)
 		return (NULL);
 	string[string_len] = '\0';
-	copy_string(string, *s);
+	copy_with_string(string, *s);
 	skip_string(s);
 	return (string);
 }
