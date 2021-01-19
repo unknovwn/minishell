@@ -12,6 +12,15 @@
 
 #include "split_str.h"
 
+char		*sup_skip_bslash(char *s)
+{
+	if (*(s + 1) != '\0')
+		s += 2;
+	else
+		s += 1;
+	return (s);
+}
+
 int			is_sep(t_split_str *s)
 {
 	return (s->delim_comparator(s->current));

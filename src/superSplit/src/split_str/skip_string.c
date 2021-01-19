@@ -20,7 +20,12 @@ int		is_protect(char c)
 char	*skip_symbols(const char *s, char c)
 {
 	while (*s != '\0' && *s != c)
-		s++;
+	{
+		if (*s == '\\')
+			s = (const char*)sup_skip_bslash((char*)s);
+		else
+			s += 1;
+	}
 	if (*s == '\0')
 		return ((char*)s);
 	else
