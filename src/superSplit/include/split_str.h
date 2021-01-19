@@ -77,6 +77,7 @@ size_t				copy_strings_with_protect(t_arr_strings *strings,
 */
 
 int					is_protect(char c);
+char				*sup_skip_bslash(char *s);
 
 /*
 ** ==========================================================================

@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 18:18:25 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 13:38:57 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/19 14:28:45 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ int		echo_command(int argc, char **argv)
 	int	i;
 	int	newline;
 
-	newline = !(argc > 1 && (ft_strcmp(argv[1], "-n") == 0));
-	i = 1 + !newline;
+	newline = 1;
+	i = 1;
+	while (i < argc && argv[i][0] == '-')
+	{
+		if ((ft_strchr(argv[i], 'n')))
+			newline = 0;
+		i++;
+	}
 	while (i < argc)
 	{
 		if (i > 1 + !newline)

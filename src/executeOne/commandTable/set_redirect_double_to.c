@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:16:02 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/17 20:26:46 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/19 15:41:13 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			set_redirect_double_to(t_command *cell, t_split_str s)
 		}
 	}
 	if ((cell->out = open(file, O_CREAT | O_WRONLY | O_APPEND,
-								S_IREAD | S_IWRITE)) < 0)
+								S_IREAD | S_IWRITE | S_IRGRP | S_IROTH)) < 0)
 	{
 		free(file);
 		return (-1);

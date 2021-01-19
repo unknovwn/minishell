@@ -6,7 +6,7 @@
 /*   By: mgeneviv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 17:12:49 by mgeneviv          #+#    #+#             */
-/*   Updated: 2021/01/18 21:31:57 by mgeneviv         ###   ########.fr       */
+/*   Updated: 2021/01/19 15:44:42 by mgeneviv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <sys/errno.h>
 #include <string.h>
 
-#define BUFFER_SIZE 262144
+#define BUFFER_SIZE 1024
 
 size_t	g_command_len;
 
@@ -62,7 +62,7 @@ int		read_to_buf(char *buf)
 {
 	int		count;
 
-	if ((count = read(STDIN, buf, BUFFER_SIZE - 1)) == -1)
+	if ((count = read(STDIN, buf, BUFFER_SIZE)) == -1)
 	{
 		print_error(0, strerror(errno));
 		return (-1);
