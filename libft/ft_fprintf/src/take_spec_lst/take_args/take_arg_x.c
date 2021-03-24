@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   take_arg_x.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 16:30:47 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/09 23:23:06 by mgeneviv         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 /*
 **	The function 'take_arg_x' puts unsigned int argument
 **	to lst->arg with applying all needs flags and converting

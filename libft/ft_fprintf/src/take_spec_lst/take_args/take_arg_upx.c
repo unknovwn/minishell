@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   take_arg_upx.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 20:07:57 by gdrive            #+#    #+#             */
-/*   Updated: 2021/01/09 23:23:06 by mgeneviv         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 /*
 **	The function 'take_arg_upx' puts unsigned int argument
 **	to lst->arg with applying all needs flags and converting
